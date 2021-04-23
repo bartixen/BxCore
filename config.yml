@@ -1,0 +1,120 @@
+#Nazwa serwera | bedzie ona wyswietlana w wielu miejscach
+nazwa: MC.BARTIXEN.PL
+
+#Motd wyswietlane na lisce serwerow
+motd:
+  #Pierwsza linia motd
+  linia-1: '&f&lMC.&9&lBARTIXEN&f&l.PL &8» &fSerwer minecraft'
+  #Druga linia motd
+  linia-2: '&7'
+  #Ta opcja zawsze dodaje jeden do maksymalnej liczby graczy | 23/24
+  max-dodac-jeden: true
+  #Ustalasz maksymalna liczbe graczy | To zadziala tylko wtedy kiedy wylaczysz (max-dodac-jeden) i (maska)
+  max: 1000
+
+#Ustalasz kordynaty spawnu
+spawn:
+  #Kordynaty (X)
+  x: 0
+  #Kordynaty (Y)
+  y: 100
+  #Kordynaty (Z)
+  z: 0
+  #Yaw | Jak nie wiesz jakie to ustaw na (90)
+  yaw: 90
+  #Pitch | Jak nie wiesz jakie to ustaw na (90)
+  pitch: 90
+  #Swiat
+  world: world
+
+#Jesli jest to wlaczone to na swiecie bedzie zawsze slonecznie
+weather: true
+
+#Ta opcja ustala swoja wiadomosc przy blendnej komedzie
+unknowncommand: true
+
+#Wlasne wiadomosci powitalne
+joinquitmessage: true
+
+#Jak to jest wlaczone to wystarczy aby tylko jeden gracz sie przespal aby byl dzien
+oneplayersleep: true
+
+#Wyswiela powiadomienia kiedy gracz wykopie drogie przedmioty
+antyxray: true
+
+#Tutaj ustalasz antyspam
+antyspam:
+  #Czy ma byc wlaczony
+  dzialanie: true
+  #Jakie ma byc opoznienie (w sekundach)
+  czas: 3
+#Dodatkowa opcja wykopywania spawneru kilofem z silkiem
+silkspawners: true
+
+#Blokuje dany swiat
+blockworld:
+  #Do swiata world_nether
+  nether:
+    #Wiadomosc kiedy odpali sie
+    wiadomosc-data: 18-04-2021 18:00
+    #Czy ta opcja dziala
+    blocked: true
+  #Do swiata world_the_end
+  end:
+    #Wiadomosc kiedy odpali sie
+    wiadomosc-data: 19-04-2021 18:00
+    #Czy ta opcja dziala
+    blocked: true
+
+#Opcje END
+end:
+  #Nie dziala tnt w end
+  blocked-tnt: true
+  #Nie dostaje sie obrazen od entity
+  blocked-damage-entity: true
+  #Nie da sie postawic luzka
+  blocked-bed: true
+  #Lvl smoka
+  dragon-lvl:
+    #Jaki jest obecnie lvl
+    lvl: 1
+    #Czy dziala
+    dzialanie: true
+  #Czy z dragona wypala elytra
+  dragon-elytra: true
+
+#Oslabienie mendingu
+mending:
+  #Czy dziala
+  dziala: true
+  #Moc oslobienia (liczba 10 daje o 70% gorsze mending)
+  liczba: 10
+
+#Lista wiadomosci ktore wysylaja sie automatycznie
+automessage:
+  #Tutaj ustawiasz czy wiadomosci maja byc wysylane
+  dziala: true
+  #Ustawiasz czas ktory odlicza wyslanie kolejnej wiadomosci (w sekundach)
+  czas: 5
+  #Wypisujesz liste wszystkich wiadomosci
+  wiadomosci:
+    - '&bWiadomosc pierwsza'
+    - '&cWiadomosc druga'
+    - '&aWiadomosc trzecia'
+
+#Lista komend zablokowanych za serwerze
+commandblock:
+  - plugins
+  - bukkit:pl
+  - ?
+  - bukkit:help
+  - bukkit:plugins
+  - bukkit:burn
+  - bukkit:kill
+
+#Ustawienia domow
+home:
+  #Ile gracz ma darmowych domow (permicja dla vipow bxcore.user.home)
+  darmowych: 1
+  #Ile jest ogolnie dostepnych domow (ustaw na 0 jezeli chcesz wylaczyc domy)
+  wszystkich: 5
