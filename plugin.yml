@@ -1,5 +1,5 @@
 main: pl.bartixen.bxcore.Main
-version: 4.0.1
+version: 4.0.2
 author: Bartixen
 name: BxCore
 api-version: 1.16
@@ -24,6 +24,7 @@ commands:
   czat:
   blockworld:
   voucher:
+  wylaczenie:
   chat:
   cc:
   alert:
@@ -41,6 +42,8 @@ commands:
   whitelist:
   tempmute:
   ip:
+  anvil:
+  kowadlo:
   graczip:
   banip:
   ipban:
