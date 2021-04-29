@@ -1,101 +1,194 @@
 main: pl.bartixen.bxcore.Main
-version: 4.0.2
+version: 4.1.1
 author: Bartixen
 name: BxCore
 api-version: 1.16
 website: https://bartixen.pl
+description: Core serwera
 depend: [BxAuth]
 
 commands:
   pomoc:
+    description: Wyswietla wszystkie dostepne komendy na danego gracza
   pl:
+    description: Pokazuje informacje o pluginie
   rtp:
+    description: Teleportuje gracza w losowe miejsce na mapie
   plugins:
+    description: Pokazuje informacje o pluginie
   ver:
+    description: Pokazuje informacje o pluginie
   lag:
+    description: Wyswietla istotne informacje o stanie serwera
   lagi:
+    description: Wyswietla istotne informacje o stanie serwera
   rtpnadaj:
+    description: Nadaje na dany blok możliwosc teleportowania graczy
   rtpusun:
+    description: Usuwa z danego bloku możliwosc teleportowania graczy
   tps:
+    description: Wyswietla istotne informacje o stanie serwera
   server:
+    description: Wyswietla istotne informacje o stanie serwera
   serverstats:
+    description: Wyswietla istotne informacje o stanie serwera
   serwer:
+    description: Wyswietla istotne informacje o stanie serwera
   version:
+    description: Pokazuje informacje o pluginie
   czat:
+    description: Komenda blokuje/odblokowauje/czyści czat serwera
   blockworld:
+    description: Komenda blokuje/odblokowuje dany swiat
   voucher:
+    description: Daje vouchery do ekwipunku gracza
   wylaczenie:
+    description: W ciagu 60s wylacza serwer
   chat:
+    description: Komenda blokuje/odblokowauje/czysci czat serwera
   cc:
+    description: Komenda czysci czat serwera
   alert:
+    description: Wysyla dany alert do wszystkich graczy
   list:
+    description: Pokazuje liste graczy i administratorow
   lista:
+    description: Pokazuje liste graczy i administratorow
   staty:
+    description: Pokazuje statystyki gracza
   statystyki:
+    description: Pokazuje statystyki gracza
   player:
+    description: Wyswietla wszystki istotne informacje o danym graczu
   wl:
+    description: Zarzadza whitelista
   bc:
+    description: Wysyla alert na wszystkich na czacie
   broadcast:
+    description: Wysyla alert na wszystkich na czacie
   gracz:
+    description: Wyswietla wszystki istotne informacje o danym graczu
   ban:
+    description: Banuje gracza
   tempban:
+    description: Tymczasowo banuje gracza
   whitelist:
+    description: Zarzadza whitelista
   tempmute:
+    description: Tymczasowy wycisza gracza
   ip:
+    description: Pokazuje ip danego gracza
   anvil:
+    description: Otwiera kowadło
   kowadlo:
+    description: Otwiera kowadło
   graczip:
+    description: Pokazuje ip danego gracza
   banip:
+    description: Nadaje blacklist na gracza/ip
   ipban:
+    description: Nadaje blacklist na gracza/ip
   unban:
+    description: Odbanowuje gracza
   kick:
+    description: Wyrzuca gracza z serwera
   mute:
+    description: Wycisza gracza
   unmute:
+    description: Odcisza gracza
   clear:
+    description: Usuwa przedmioty z ekwipunku
   top:
+    description: Pokazuje statystyki gracza
   topki:
+    description: Pokazuje statystyki gracza
   bx:
+    description: Pokazuje informacje o pluginie
   bxcore:
+    description: Pokazuje informacje o pluginie
   day:
+    description: Ustawia dzien na serwerze
   enderchest:
+    description: Otwiera enderchest danego gracza
   setspawn:
+    description: Ustawia spawn w miejscu gracza
   v:
+    description: Wlacza/Wylacza vanish gracza
   vanish:
+    description: Wlacza/Wylacza vanish gracza
   ec:
+    description: Otwiera enderchest danego gracza
   fly:
+    description: Wlacza latanie dla danego gracza
   socialspy:
+    description: Pokazuje prywatne wiadomosci graczy
   msg:
+    description: Wysyla prywatna wiadomosc na danego gracza
   r:
+    description: Odpowiada na ostatnia prywatna wiadomość
   ignore:
+    description: Wylacza/Wlacza prywatne wiadomosci od danego gracza
   dzien:
+    description: Ustawia dzień na serwerze
   noc:
+    description: Ustawia noc na serwerze
   gm:
+    description: Ustawia dany tryb gry
   gamemode:
+    description: Ustawia dany tryb gry
   god:
+    description: Wlacza/Wylacza niesmiertelnosc gracza
   home:
+    description: Otwiera gui z domami
   sethome:
+    description: Otwiera gui z domami
   delhome:
+    description: Otwiera gui z domami
   godmode:
+    description: Wlacza/Wylacza niesmiertelnosc gracza
   help:
+    description: Wyswietla wszystkie dostepne komendy na danego gracza
   heal:
+    description: Leczy gracza
   helpop:
+    description: Wysyla wiadomosc do administracji
   invsee:
+    description: Otwiera dany ekwipunek gracza
   swiat:
+    description: Teleportuje gracza na dany świat
   oi:
+    description: Otwiera dany ekwipunek gracza
   pogoda:
+    description: Ustawia dana pogode na serwerze
   night:
+    description: Ustawia noc na serwerze
   repair:
+    description: Naprawia przedmioty
   spawn:
+    description: Teleportuje na spawn
   tp:
+    description: Teleportuje do danego gracza lub kordy
   teleport:
+    description: Teleportuje do danego gracza lub kordy
   tphere:
+    description: Teleportuje danego gracza do osoby ktora uzyla komendy
   s:
+    description: Teleportuje danego gracza do osoby ktora uzyla komendy
   tpa:
+    description: Wysyla prosbe o teleporacje do danego gracza
   tpaccept:
+    description: Akceptuje teleportacje od danego gracza
   tpdeny:
+    description: Usuwa prosbe o teleportacje od danego gracza
   weather:
+    description: Ustawia dana pogode na serwerze
   back:
+    description: Teleportuje w ostanie zapisane miejsce danego gracza
   world:
+    description: Teleportuje gracza na dany swiat
   wb:
+    description: Otwiera crafting dla gracza
   speed:
+    description: Ustawia daną szybkosc chodzenie/latanie dla gracza
   crafting:
+    description: Otwiera crafting dla gracza
