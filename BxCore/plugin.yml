@@ -1,5 +1,5 @@
 main: pl.bartixen.bxcore.Main
-version: 4.1.1
+version: 4.2.9
 author: Bartixen
 name: BxCore
 api-version: 1.16
@@ -8,6 +8,13 @@ description: Core serwera
 depend: [BxAuth]
 
 commands:
+  teamy:
+  team:
+    description: Komenda do druzyn
+  druzyna:
+    description: Komenda do druzyn
+  pvp:
+    description: Wlacza/Wylacza pvp dla gracza
   pomoc:
     description: Wyswietla wszystkie dostepne komendy na danego gracza
   pl:

@@ -18,6 +18,7 @@ public class BxCoreCommand implements CommandExecutor {
     WhitelistDataManager wld;
     RtpDataManager rtpd;
     AntyXrayDataManager antyd;
+    TeamDataManager teamd;
 
     public BxCoreCommand(Main m) {
         plugin = m;
@@ -31,6 +32,7 @@ public class BxCoreCommand implements CommandExecutor {
         wld = WhitelistDataManager.getInstance();
         rtpd = RtpDataManager.getInstance();
         antyd = AntyXrayDataManager.getInstance();
+        teamd = TeamDataManager.getInstance();
     }
 
     @Override
@@ -59,6 +61,8 @@ public class BxCoreCommand implements CommandExecutor {
                     sender.sendMessage("§7Pomyślnie przeladowano §9RTPDATAMENAGER");
                     antyd.reloadData();
                     sender.sendMessage("§7Pomyślnie przeladowano §9ANTYXRAYDATAMENAGER");
+                    teamd.reloadData();
+                    sender.sendMessage("§7Pomyślnie przeladowano §9TEAMDATAMENAGER");
                     sender.sendMessage("§8 • — • — • — • ");
                 } else {
                     sender.sendMessage("§7");

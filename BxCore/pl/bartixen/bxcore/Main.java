@@ -45,6 +45,8 @@ public class Main extends JavaPlugin implements Listener {
     WhitelistDataManager wld;
     RtpDataManager rtpd;
     AntyXrayDataManager antyd;
+    TeamDataManager teamd;
+    AntyLogutDataManager antylogutd;
 
     public Main() {
         hd = HomeDataManager.getInstance();
@@ -55,6 +57,8 @@ public class Main extends JavaPlugin implements Listener {
         wld = WhitelistDataManager.getInstance();
         rtpd = RtpDataManager.getInstance();
         antyd = AntyXrayDataManager.getInstance();
+        teamd = TeamDataManager.getInstance();
+        antylogutd = AntyLogutDataManager.getInstance();
     }
 
     @Override
@@ -99,6 +103,12 @@ public class Main extends JavaPlugin implements Listener {
             }
 
             try {
+                antyd.setup(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
                 band.setup(this);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -111,13 +121,19 @@ public class Main extends JavaPlugin implements Listener {
             }
 
             try {
-                antyd.setup(this);
+                antylogutd.setup(this);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             try {
                 rtpd.setup(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                teamd.setup(this);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -149,6 +165,12 @@ public class Main extends JavaPlugin implements Listener {
             new SpawnCommand(this);
             new Tpa(this);
             new TpAccept(this);
+            new PvpCommand(this);
+            try {
+                new TeamCommand(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             new BlockedWorldCommand(this);
             new TpDeny(this);
             new TpSystem(this);
@@ -172,6 +194,7 @@ public class Main extends JavaPlugin implements Listener {
             new NightCommand(this);
             new PluginsCommand(this);
             new PomocCommand(this);
+            new PvpCommand(this);
             new SetSpawnCommand(this);
             new SpeedCommand(this);
             new TpCommand(this);
@@ -186,6 +209,11 @@ public class Main extends JavaPlugin implements Listener {
             new AnvilCommand(this);
             new WorldCommand(this);
             new VanishCommand(this);
+            try {
+                new TeamyCommand(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             new VoucherCommand(this);
             new HomeCommand(this);
             new Ignore(this);
@@ -219,9 +247,23 @@ public class Main extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new VoucherHome(), this);
             getServer().getPluginManager().registerEvents(new Mending(this), this);
             getServer().getPluginManager().registerEvents(new BlockedWorld(this), this);
+            getServer().getPluginManager().registerEvents(new PvpCommand(this), this);
             getServer().getPluginManager().registerEvents(new LvLDragon(this), this);
+            getServer().getPluginManager().registerEvents(new AntyLogut(this), this);
+            getServer().getPluginManager().registerEvents(new PvpCommand(this), this);
+            try {
+                getServer().getPluginManager().registerEvents(new TeamyCommand(this), this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                getServer().getPluginManager().registerEvents(new TeamCommand(this), this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             new VanishAction(this).runTaskTimer(this, 0, 20 * 2);
             new ClearXray(this).runTaskTimer(this, 0, 3600 * 20);
+            new AntyLogut(this).runTaskTimer(this, 0, 20);
             try {
                 getServer().getPluginManager().registerEvents(new WhitelistCommand(this), this);
             } catch (IOException e) {

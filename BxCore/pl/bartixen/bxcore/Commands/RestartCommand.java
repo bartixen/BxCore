@@ -14,7 +14,7 @@ public class RestartCommand implements CommandExecutor {
 
     Main plugin;
 
-    static boolean restart = false;
+    public static boolean restart = false;
 
     public RestartCommand(Main m) {
         plugin = m;

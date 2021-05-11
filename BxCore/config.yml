@@ -118,3 +118,19 @@ home:
   darmowych: 1
   #Ile jest ogolnie dostepnych domow (ustaw na 0 jezeli chcesz wylaczyc domy)
   wszystkich: 5
+
+#Ustawienia teamow
+teamy:
+  #Ile jest darmowych zmian teamow
+  darmo_zmian: 1
+  #Koszt kazdego kolejnej zmiany teamu
+  koszt_zmiany: 16
+  #Ilosc darmowych osob w team
+  darmo_sloty: 5
+  #Koszt kazdego nowego slotu w team
+  koszt_slot: 32
+
+#Ustawienia antylogut
+antylogut:
+  #Ile ma trwac antylogut
+  czas: 30

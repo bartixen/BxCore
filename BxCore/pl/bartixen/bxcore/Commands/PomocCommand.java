@@ -32,6 +32,8 @@ public class PomocCommand implements CommandExecutor {
         sender.sendMessage("§7- §9/home §7| §fTeleportuje ciebie do domu");
         sender.sendMessage("§7- §9/msg §7| §fWysyla prywatna wiadomość do gracza");
         sender.sendMessage("§7- §9/staty §7| §fWyświetla statystyki");
+        sender.sendMessage("§7- §9/pvp §7| §fWlacza/Wylacza pvp gracza");
+        sender.sendMessage("§7- §9/team , /teamy §7| §fDodaje ciebie to wybranego teamu");
         if (sender.hasPermission("bxcore.commands.alert") || sender.isOp()) {
             sender.sendMessage("§7- §9/alert, /bc §7| §fWysyla do wszystkich alert");
             sender.sendMessage("§7- §9/bossbar §7| §fWysyla do wszystkich bossbar z informacja");
