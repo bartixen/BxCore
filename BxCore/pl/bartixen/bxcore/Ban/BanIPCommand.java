@@ -63,6 +63,11 @@ public class BanIPCommand implements CommandExecutor {
                             e.printStackTrace();
                         }
                         sender.sendMessage("§7Gracz §9" + args[0] + " §8(§b" + ip + "§8) §7zostal pomyślnie dodany do blacklist z powodem §9" + msg);
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            if (players.hasPermission("bxcore.commands.banip") || players.isOp()) {
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal dodany do blacklist przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                            }
+                        }
                         Player cel = Bukkit.getPlayerExact(args[0]);
                         if (cel != null) {
                             cel.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
@@ -92,6 +97,11 @@ public class BanIPCommand implements CommandExecutor {
                             }
                         }
                         sender.sendMessage("§7Adres IP §9" + ip + " §7zostal pomyślnie dodany do blacklist");
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            if (players.hasPermission("bxcore.commands.banip") || players.isOp()) {
+                                players.sendMessage("§7Adres IP §9" + ip + " §7zostal dodany do blacklist przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                            }
+                        }
                         return false;
                     }
                 } else {

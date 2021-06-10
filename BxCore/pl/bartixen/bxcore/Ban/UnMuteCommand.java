@@ -1,8 +1,10 @@
 package pl.bartixen.bxcore.Ban;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Data.BanDataManager;
 import pl.bartixen.bxcore.Main;
 
@@ -38,6 +40,11 @@ public class UnMuteCommand implements CommandExecutor {
                         e.printStackTrace();
                     }
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie odciszony");
+                    for (Player players : Bukkit.getOnlinePlayers()) {
+                        if (players.hasPermission("bxcore.commands.unmute") || players.isOp()) {
+                            players.sendMessage("§7Gracz §9" + args[0] + " §7zostal odciszony przez §9" + sender.getName());
+                        }
+                    }
                 } else {
                     if ((band.getData().getString(args[0] + ".tempmute")) != null) {
                         band.getData().set(args[0] + ".tempmute", null);

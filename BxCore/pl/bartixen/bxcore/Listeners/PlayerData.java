@@ -26,6 +26,7 @@ public class PlayerData implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws IOException {
         Player p = e.getPlayer();
+        p.sendTitle("", "", 1, 1, 1);
         String uuid = p.getUniqueId().toString();
         String nick = p.getName();
         InetSocketAddress IPAdressPlayer = p.getAddress();

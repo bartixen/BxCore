@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -43,12 +44,26 @@ public class AntyLogut extends BukkitRunnable implements Listener {
         if ((antylogutd.getData().getString(p.getDisplayName() + ".czas")) != null) {
             if (!RestartCommand.restart) {
                 p.setHealth(0);
+                String nick = antylogutd.getData().getString(p.getDisplayName() + ".kto");
                 for (Player players : Bukkit.getOnlinePlayers()) {
-                    players.sendMessage("§fGracz §9" + p.getName() + " §fwylogowal sie podczas PVP");
+                    players.sendMessage("§fGracz §9" + p.getName() + " §fwylogowal sie podczas walki z §9" + nick);
                 }
             }
         }
     }
+
+    @EventHandler
+    public void OnDeath(PlayerDeathEvent e) throws IOException {
+        Player p = e.getEntity();
+        int x = (int) p.getLocation().getX();
+        int y = (int) p.getLocation().getY();
+        int z = (int) p.getLocation().getZ();
+        p.sendMessage("§fTwoje kordy śmierci to: §9X: " + x + " Y: " + y + " Z: " + z);
+        antylogutd.getData().set(p.getDisplayName() + ".czas", null);
+        antylogutd.saveData();
+    }
+
+
 
     @Override
     public void run() {

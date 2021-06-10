@@ -48,7 +48,7 @@ public class GamemodeCommand implements CommandExecutor {
                         return true;
                     }
                     cel.setGameMode(mode);
-                    cel.sendMessage("§7Zmieniono tryb gry na §9" + mode + " §7przez gracza " + sender.getName());
+                    cel.sendMessage("§7Zmieniono tryb gry na §9" + mode + " §7przez gracza §9" + sender.getName());
                     sender.sendMessage("§7Poprawne ustawiono graczu §9" + cel.getName() + " §7tryb gry na §9" + mode);
                 } else {
                     sender.sendMessage("§7Poprawne użycie: §9/gm [0,1,2,3]");

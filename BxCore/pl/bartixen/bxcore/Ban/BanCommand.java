@@ -61,6 +61,11 @@ public class BanCommand implements CommandExecutor {
                             e.printStackTrace();
                         }
                         sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie zbanowany permamentnie z powodem §9" + msg);
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            if (players.hasPermission("bxcore.commands.ban") || players.isOp()) {
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal zbanowany permamentnie przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                            }
+                        }
                         return false;
                     }
                     UUID uuid = cel.getUniqueId();
@@ -81,6 +86,11 @@ public class BanCommand implements CommandExecutor {
                         e.printStackTrace();
                     }
                     sender.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal pomyślnie zbanowany permamentnie z powodem §9" + msg);
+                    for (Player players : Bukkit.getOnlinePlayers()) {
+                        if (players.hasPermission("bxcore.commands.ban") || players.isOp()) {
+                            players.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal zbanowany permamentnie przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                        }
+                    }
                     cel.kickPlayer("\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
                 } else {
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7jest już zbanowany");

@@ -65,6 +65,11 @@ public class TempMuteCommand implements CommandExecutor {
                             e.printStackTrace();
                         }
                         sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie wyciszony");
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            if (players.hasPermission("bxcore.commands.tempmute") || players.isOp()) {
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal wyciszony tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                            }
+                        }
                         return false;
                     }
                     band.getData().set(cel.getName() + ".tempmute.adminstrator", sender.getName());
@@ -87,7 +92,11 @@ public class TempMuteCommand implements CommandExecutor {
                     cel.sendMessage("§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •");
                     cel.sendMessage("");
                     sender.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal pomyślnie wyciszony");
-
+                    for (Player players : Bukkit.getOnlinePlayers()) {
+                        if (players.hasPermission("bxcore.commands.tempmute") || players.isOp()) {
+                            players.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal wyciszony tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                        }
+                    }
                 } else {
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7jest już wyciszony");
                 }

@@ -65,12 +65,12 @@ public class ServerStatsCommand implements CommandExecutor {
             sender.sendMessage("§7Nazwa serwera: §9" + nazwa);
             sender.sendMessage("§7Silnik: §9" + wersja);
             sender.sendMessage("§7Gracze: §9" + online + "/" + maxonline);
-            sender.sendMessage("§7TPS: §9" + tps + " §8(§cTe dane moga być bledne, użyj /tps§8)");
+            sender.sendMessage("§7TPS: §9error" + " §8(§cTe dane moga być bledne, użyj /tps§8)");
             sender.sendMessage("§7Liczba światów: §9" + world);
             sender.sendMessage("§7Liczba zaladowanych chunks: §9" + chunks);
             sender.sendMessage("§7Liczba entities: §9" + entities);
             sender.sendMessage("§7Ram: §9" + useram + "/" + maxram + " MB");
-            sender.sendMessage("§7Średni ping graczy: §9" + sredniping + " ms");
+            sender.sendMessage("§7Średni ping graczy: §9" + sredniping + " ms §8(§cTe dane moga być bledne§8)");
             sender.sendMessage("§8 • — • — • — • ");
         } else {
             sender.sendMessage("§7Brak permisji: §9bxcore.commands.server");

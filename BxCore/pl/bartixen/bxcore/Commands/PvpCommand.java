@@ -122,7 +122,6 @@ public class PvpCommand implements CommandExecutor, Listener {
         if (e.getEntity() instanceof Player) {
             final Player player = (Player)e.getEntity();
             if (e.getDamager() instanceof Player) {
-
                 if (!userd.getData().getBoolean(e.getEntity().getName() + ".pvp")) {
                     e.setCancelled(true);
                     return;
@@ -135,7 +134,9 @@ public class PvpCommand implements CommandExecutor, Listener {
                 Player p1 = (Player) e.getEntity();
                 Player p2 = (Player) e.getDamager();
                 antylogutd.getData().set(p1.getDisplayName() + ".czas", czas);
+                antylogutd.getData().set(p1.getDisplayName() + ".kto", p2.getDisplayName());
                 antylogutd.getData().set(p2.getDisplayName() + ".czas", czas);
+                antylogutd.getData().set(p2.getDisplayName() + ".kto", p1.getDisplayName());
                 antylogutd.saveData();
             }
         }

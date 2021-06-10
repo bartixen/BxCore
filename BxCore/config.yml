@@ -1,10 +1,10 @@
 #Nazwa serwera | bedzie ona wyswietlana w wielu miejscach
-nazwa: MC.BARTIXEN.PL
+nazwa: MC.SERWER.PL
 
 #Motd wyswietlane na lisce serwerow
 motd:
   #Pierwsza linia motd
-  linia-1: '&f&lMC.&9&lBARTIXEN&f&l.PL &8» &fSerwer minecraft'
+  linia-1: '&f&lMC.&9&lSERWER&f&l.PL &8» &fSerwer minecraft'
   #Druga linia motd
   linia-2: '&7'
   #Ta opcja zawsze dodaje jeden do maksymalnej liczby graczy | 23/24
@@ -118,17 +118,6 @@ home:
   darmowych: 1
   #Ile jest ogolnie dostepnych domow (ustaw na 0 jezeli chcesz wylaczyc domy)
   wszystkich: 5
-
-#Ustawienia teamow
-teamy:
-  #Ile jest darmowych zmian teamow
-  darmo_zmian: 1
-  #Koszt kazdego kolejnej zmiany teamu
-  koszt_zmiany: 16
-  #Ilosc darmowych osob w team
-  darmo_sloty: 5
-  #Koszt kazdego nowego slotu w team
-  koszt_slot: 32
 
 #Ustawienia antylogut
 antylogut:
