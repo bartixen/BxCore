@@ -11,6 +11,7 @@ import pl.bartixen.bxcore.Main;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
 
 public class UnBanCommand implements CommandExecutor {
 
@@ -39,11 +40,14 @@ public class UnBanCommand implements CommandExecutor {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie odbanowany");
+                    sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie odbanowany");
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         if (players.hasPermission("bxcore.commands.unban") || players.isOp()) {
-                            players.sendMessage("§7Gracz §9" + args[0] + " §7zostal odbanowany przez §9" + sender.getName());
+                            players.sendMessage("§7Gracz §9" + args[0] + " §7został odbanowany przez §9" + sender.getName());
                         }
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal odbanowany przez " + sender.getName());
                     }
                 } else {
                     if ((band.getData().getString(args[0] + ".tempban")) != null) {
@@ -55,11 +59,14 @@ public class UnBanCommand implements CommandExecutor {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie odbanowany");
+                        sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie odbanowany");
                         for (Player players : Bukkit.getOnlinePlayers()) {
                             if (players.hasPermission("bxcore.commands.unban") || players.isOp()) {
-                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal odbanowany przez §9" + sender.getName());
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7został odbanowany przez §9" + sender.getName());
                             }
+                        }
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal odbanowany przez " + sender.getName());
                         }
                     } else {
                         if ((band.getData().getString(args[0] + ".banip")) != null) {
@@ -74,11 +81,14 @@ public class UnBanCommand implements CommandExecutor {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie usuniety z blacklisty");
+                            sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie usuniety z blacklisty");
                             for (Player players : Bukkit.getOnlinePlayers()) {
                                 if (players.hasPermission("bxcore.commands.unban") || players.isOp()) {
-                                    players.sendMessage("§7Gracz §9" + args[0] + " §7zostal usuniety z blacklisty przez §9" + sender.getName());
+                                    players.sendMessage("§7Gracz §9" + args[0] + " §7został usuniety z blacklisty przez §9" + sender.getName());
                                 }
+                            }
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal usuniety z blacklisty przez " + sender.getName());
                             }
                         } else {
                             if (BanIPCommand.banip.contains(args[0])) {
@@ -89,11 +99,14 @@ public class UnBanCommand implements CommandExecutor {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                sender.sendMessage("§7Adres IP §9" + args[0] + " §7zostal pomyślnie usuniety z blacklisty");
+                                sender.sendMessage("§7Adres IP §9" + args[0] + " §7został pomyślnie usuniety z blacklisty");
                                 for (Player players : Bukkit.getOnlinePlayers()) {
                                     if (players.hasPermission("bxcore.commands.banip") || players.isOp()) {
-                                        players.sendMessage("§7Adres IP §9" + args[0] + " §7zostal usuniety z blacklisty przez §9" + sender.getName());
+                                        players.sendMessage("§7Adres IP §9" + args[0] + " §7został usuniety z blacklisty przez §9" + sender.getName());
                                     }
+                                }
+                                if (plugin.getConfig().getBoolean("logs")) {
+                                    plugin.getLogger().log(Level.INFO, "Adres IP " + args[0] + " zostal usuniety z blacklisty przez " + sender.getName());
                                 }
                             } else {
                                 if (BanIPCommand.banip.contains("/" + args[0])) {
@@ -104,11 +117,14 @@ public class UnBanCommand implements CommandExecutor {
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-                                    sender.sendMessage("§7Adres IP §9/" + args[0] + " §7zostal pomyślnie usuniety z blacklisty");
+                                    sender.sendMessage("§7Adres IP §9/" + args[0] + " §7został pomyślnie usuniety z blacklisty");
                                     for (Player players : Bukkit.getOnlinePlayers()) {
                                         if (players.hasPermission("bxcore.commands.banip") || players.isOp()) {
-                                            players.sendMessage("§7Adres IP §9/" + args[0] + " §7zostal usuniety z blacklisty przez §9" + sender.getName());
+                                            players.sendMessage("§7Adres IP §9/" + args[0] + " §7został usuniety z blacklisty przez §9" + sender.getName());
                                         }
+                                    }
+                                    if (plugin.getConfig().getBoolean("logs")) {
+                                        plugin.getLogger().log(Level.INFO, "Adres IP /" + args[0] + " zostal usuniety z blacklisty przez " + sender.getName());
                                     }
                                 } else {
                                     sender.sendMessage("§7Gracz/IP §9" + args[0] + " §7nie jest zbanowany");

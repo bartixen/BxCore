@@ -13,6 +13,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class GraczCommand implements CommandExecutor {
 
@@ -217,6 +218,9 @@ public class GraczCommand implements CommandExecutor {
                 sender.sendMessage("  §7Multikonta: §9" + multikonta);
                 sender.sendMessage("  §7Konta zarejestrowane na adresie IP gracza: §9" + kontaregister);
                 sender.sendMessage("§8 • — • — • — • ");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.WARNING, "Gracz " + sender.getName() + " uzyskal dostep do wszystkich danych gracza " + args[0]);
+                }
             } else {
                 sender.sendMessage("§7Poprawne użycie: §9/gracz [gracz]");
             }

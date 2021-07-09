@@ -7,6 +7,7 @@ import pl.bartixen.bxcore.Data.RtpDataManager;
 import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 public class RtpUsunCommand implements CommandExecutor {
 
@@ -35,6 +36,9 @@ public class RtpUsunCommand implements CommandExecutor {
                     e.printStackTrace();
                 }
                 sender.sendMessage("§7Poprawnie usunieto przycisk rtp §9X §b" + x + " §9Y §b" + y + " §9Z §b" + z);
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " usunal przcisk rtp z kordynat: X - " + x + " Y - " + y + " Z - " + z);
+                }
             } else {
                 sender.sendMessage("§7Nie znaleziono takiego przycisku rtp");
             }

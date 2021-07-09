@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class NightCommand implements CommandExecutor {
 
     Main plugin;
@@ -20,6 +22,9 @@ public class NightCommand implements CommandExecutor {
         if (sender.hasPermission("bxcore.commands.night") || sender.isOp()) {
             plugin.getServer().getWorld("world").setTime(39000);
             sender.sendMessage("§7Ustawiono §9noc §7na świecie");
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " ustawil noc na serwerze");
+            }
         } else {
             sender.sendMessage("§7Brak permisji: §9bxcore.commands.night");
         }

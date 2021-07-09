@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class AlertCommand implements CommandExecutor {
 
     Main plugin;
@@ -35,24 +37,36 @@ public class AlertCommand implements CommandExecutor {
                         players.sendTitle("§c§l" + msg, "", 5, 50, 5);
                     }
                     sender.sendMessage("§7Wyslano pomyślnie alert");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyslal alert " + msg);
+                    }
                 } else {
                     if (args[0].equalsIgnoreCase("subtitle")) {
                         for (Player players : Bukkit.getOnlinePlayers()) {
                             players.sendTitle("", "§c§l" + msg, 5, 50, 5);
                         }
                         sender.sendMessage("§7Wyslano pomyślnie alert");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyslal alert " + msg);
+                        }
                     } else {
                         if (args[0].equalsIgnoreCase("broadcast")) {
                             for (Player players : Bukkit.getOnlinePlayers()) {
                                 players.sendMessage("§c§l" + msg);
                             }
                             sender.sendMessage("§7Wyslano pomyślnie alert");
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyslal alert " + msg);
+                            }
                         } else {
                             if (args[0].equalsIgnoreCase("action")) {
                                 for (Player players : Bukkit.getOnlinePlayers()) {
                                     players.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§c§l" + msg));
                                 }
                                 sender.sendMessage("§7Wyslano pomyślnie alert");
+                                if (plugin.getConfig().getBoolean("logs")) {
+                                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyslal alert " + msg);
+                                }
                             } else {
                                 sender.sendMessage("§7Poprawne użycie: §9/alert [title,subtitle,action,broadcast] [wiadomosc]");
                             }

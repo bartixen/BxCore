@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class BedSleep implements Listener {
 
     Main plugin;
@@ -25,6 +27,9 @@ public class BedSleep implements Listener {
                         p.getLocation().getWorld().setTime(1000L);
                         for (Player players : Bukkit.getOnlinePlayers()) {
                             players.sendMessage("§7Gracz §9" + p.getDisplayName() + " §7poszedl spać");
+                        }
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " poszedl spac");
                         }
                     }
                 }

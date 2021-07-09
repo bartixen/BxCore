@@ -9,6 +9,7 @@ import pl.bartixen.bxcore.Data.UserDataManager;
 import pl.bartixen.bxcore.Main;
 
 import java.net.InetSocketAddress;
+import java.util.logging.Level;
 
 public class IPCommand implements CommandExecutor {
 
@@ -35,11 +36,17 @@ public class IPCommand implements CommandExecutor {
                     int entityTypeLenght = name.length() - 6;
                     String ipban = name.substring(0, entityTypeLenght);
                     sender.sendMessage("§7Adres IP gracza §9" + args[0] + " §7to §9" + ipban);
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.WARNING, "Gracz " + sender.getName() + " uzyskal dostep do adresu IP gracza " + args[0]);
+                    }
                     return false;
                 }
                 if ((userd.getData().getString(args[0])) != null) {
                     String ip = userd.getData().getString(args[0] + ".last_ip");
                     sender.sendMessage("§7Adres IP gracza §9" + args[0] + " §7to §9" + ip);
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.WARNING, "Gracz " + sender.getName() + " uzyskal dostep do adresu IP gracza " + args[0]);
+                    }
                 } else {
                     sender.sendMessage("§7Brak danych o graczu §9" + args[0]);
                 }

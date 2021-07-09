@@ -12,6 +12,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class WhitelistCommand implements CommandExecutor, Listener {
 
@@ -57,9 +58,12 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        sender.sendMessage("§7Whitelist zostala §9wlaczona");
+                        sender.sendMessage("§7Whitelist została §9wlaczona");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl whiteliste");
+                        }
                     } else {
-                        sender.sendMessage("§7Whitelista jest już wlaczona");
+                        sender.sendMessage("§7Whitelista jest już włączona");
                     }
                 } else {
                     if ((args[0].equalsIgnoreCase("off")) || (args[0].equalsIgnoreCase("wylacz"))) {
@@ -71,9 +75,12 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            sender.sendMessage("§7Whitelist zostala §9wylaczona");
+                            sender.sendMessage("§7Whitelist została §9wylaczona");
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl whiteliste");
+                            }
                         } else {
-                            sender.sendMessage("§7Whitelista jest już wylaczona");
+                            sender.sendMessage("§7Whitelista jest już wyłączona");
                         }
                     } else {
                         if ((args[0].equalsIgnoreCase("add")) || (args[0].equalsIgnoreCase("dodaj"))) {
@@ -87,6 +94,9 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                         e.printStackTrace();
                                     }
                                     sender.sendMessage("§7Dodano gracza §9" + args[1] + " §7do whitelisty");
+                                    if (plugin.getConfig().getBoolean("logs")) {
+                                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " dodal do whitelisty gracza " + args[1]);
+                                    }
                                 } else {
                                     sender.sendMessage("§7Gracz §9" + args[1] + " §7jest już na whitelist");
                                 }
@@ -105,6 +115,9 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                             e.printStackTrace();
                                         }
                                         sender.sendMessage("§7Usunieto gracza §9" + args[1] + " §7z whitelisty");
+                                        if (plugin.getConfig().getBoolean("logs")) {
+                                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " usuna z whitelisty gracza " + args[1]);
+                                        }
                                     } else {
                                         sender.sendMessage("§7Gracza §9" + args[1] + " §7nie ma na whitelist");
                                     }
@@ -120,6 +133,9 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                         e.printStackTrace();
                                     }
                                     sender.sendMessage("§7Poprawnie §9usunieto wszystkich §7z whitelisty");
+                                    if (plugin.getConfig().getBoolean("logs")) {
+                                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " usuna wszystkich z whitelisty");
+                                    }
                                 } else {
                                     if ((args[0].equalsIgnoreCase("message")) || (args[0].equalsIgnoreCase("wiadomosc"))) {
                                         StringBuilder sb = new StringBuilder();
@@ -133,7 +149,10 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
-                                        sender.sendMessage("§7Wiadomość whitelisty zostala ustawiona na: §9" + sb.toString());
+                                        sender.sendMessage("§7Wiadomość whitelisty została ustawiona na: §9" + sb.toString());
+                                        if (plugin.getConfig().getBoolean("logs")) {
+                                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " ustawil wiadomosc whitelisty na: " + sb.toString());
+                                        }
                                     } else {
                                         if ((args[0].equalsIgnoreCase("list")) || (args[0].equalsIgnoreCase("lista"))) {
                                             sender.sendMessage("§7Lista graczy: (§9" + whitelist.size() + "§7) §9" + whitelist);

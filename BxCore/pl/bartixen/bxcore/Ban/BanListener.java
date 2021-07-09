@@ -63,7 +63,7 @@ public class BanListener implements Listener {
         String ipban = name.substring(0, entityTypeLenght);
 
         if ((BanIPCommand.banip.contains(ipban)) && !p.isOp()) {
-            p.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + p.getName() + "\n\n§cNa ten adres IP §8(§e" + ipban + "§8) §czostala nadana blokada\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+            p.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + p.getName() + "\n\n§cNa ten adres IP §8(§e" + ipban + "§8) §czostała nadana blokada\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
         }
     }
 

@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class WorldCommand implements CommandExecutor {
 
     Main plugin;
@@ -29,14 +31,23 @@ public class WorldCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("world")) {
                     p.teleport(new Location(p.getServer().getWorld("world"), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), p.getLocation().getYaw(), p.getLocation().getPitch()));
                     p.sendMessage("§7Pomyślnie przeteleportowano ciebie do świata §9world");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal sie do swiata WORLD");
+                    }
                 } else {
                     if (args[0].equalsIgnoreCase("nether")) {
                         p.teleport(new Location(p.getServer().getWorld("world_nether"), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), p.getLocation().getYaw(), p.getLocation().getPitch()));
                         p.sendMessage("§7Pomyślnie przeteleportowano ciebie do świata §9world_nether");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal sie do swiata WORLD_NETHER");
+                        }
                     } else {
                         if (args[0].equalsIgnoreCase("end")) {
                             p.teleport(new Location(p.getServer().getWorld("world_the_end"), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), p.getLocation().getYaw(), p.getLocation().getPitch()));
                             p.sendMessage("§7Pomyślnie przeteleportowano ciebie do świata §9world_the_end");
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal sie do swiata WORLD_THE_END");
+                            }
                         } else {
                             sender.sendMessage("§7Poprawne użycie: §9/world [world,nether,end]");
                         }

@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class ChatClearCommand implements CommandExecutor {
 
     Main plugin;
@@ -28,6 +30,9 @@ public class ChatClearCommand implements CommandExecutor {
             }
             for (Player players : Bukkit.getOnlinePlayers()) {
                 players.sendMessage("§7Czat wyczyszczono przez §9" + sender.getName());
+            }
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyczyszczyl czat");
             }
         } else {
             sender.sendMessage("§7Brak permisji: §9bxcore.commands.chat");

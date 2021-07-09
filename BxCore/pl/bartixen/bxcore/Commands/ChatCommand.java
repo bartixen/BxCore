@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class ChatCommand implements CommandExecutor, Listener {
 
     Main plugin;
@@ -28,21 +30,27 @@ public class ChatCommand implements CommandExecutor, Listener {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("on")) {
                     if (chat) {
-                        sender.sendMessage("§7Czat jest już wlaczony");
+                        sender.sendMessage("§7Czat jest już włączony");
                     } else {
                         chat = true;
                         for (Player players : Bukkit.getOnlinePlayers()) {
-                            players.sendMessage("§7Czat zostal §awlaczony §7przez §9" + sender.getName());
+                            players.sendMessage("§7Czat został §awłączony §7przez §9" + sender.getName());
+                        }
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl czat");
                         }
                     }
                 } else {
                     if (args[0].equalsIgnoreCase("off")) {
                         if (!chat) {
-                            sender.sendMessage("§7Czat jest już wylaczony");
+                            sender.sendMessage("§7Czat jest już wyłączony");
                         } else {
                             chat = false;
                             for (Player players : Bukkit.getOnlinePlayers()) {
-                                players.sendMessage("§7Czat zostal §cwylaczony §7przez §9" + sender.getName());
+                                players.sendMessage("§7Czat zostal §cwyłączony §7przez §9" + sender.getName());
+                            }
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl czat");
                             }
                         }
                     } else {
@@ -54,6 +62,9 @@ public class ChatCommand implements CommandExecutor, Listener {
                             }
                             for (Player players : Bukkit.getOnlinePlayers()) {
                                 players.sendMessage("§7Czat wyczyszczono przez §9" + sender.getName());
+                            }
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyczyszczyl czat");
                             }
                         } else {
                             sender.sendMessage("§7Poprawne użycie: §9/chat [on,off,clear]");

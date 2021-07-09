@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 public class RtpCommand implements CommandExecutor {
 
@@ -123,6 +124,9 @@ public class RtpCommand implements CommandExecutor {
                                                                                                         public void run() {
                                                                                                             if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                 p.teleport(loc);
+                                                                                                                if (plugin.getConfig().getBoolean("logs")) {
+                                                                                                                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie w losowe kordynaty: X - " + x + " Z - " + z);
+                                                                                                                }
                                                                                                                 p.sendMessage("§7Zostales przeteleportowany na kordy §9X §b" + x + " §9Z §b" + z);
                                                                                                             }
                                                                                                         }
@@ -151,6 +155,9 @@ public class RtpCommand implements CommandExecutor {
             } else {
                 p.teleport(loc);
                 p.sendMessage("§7Zostales przeteleportowany na kordy §9X §b" + x + " §9Z §b" + z);
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie w losowe kordynaty: X - " + x + " Z - " + z);
+                }
             }
         } else {
             sender.sendMessage("§7Brak permisji: §9bxcore.commands.rtp");

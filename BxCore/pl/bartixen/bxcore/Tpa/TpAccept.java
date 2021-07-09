@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class TpAccept implements CommandExecutor {
 
     Main plugin;
@@ -37,7 +39,7 @@ public class TpAccept implements CommandExecutor {
                 double tpX = p2.getLocation().getX();
                 double tpY = p2.getLocation().getY();
                 double tpZ = p2.getLocation().getZ();
-                p2.sendMessage("§7Gracz §9" + p.getName() + " §7zakceptowal twoja prośbe");
+                p2.sendMessage("§7Gracz §9" + p.getName() + " §7zakceptował twoja prośbe");
                 p2.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§7Teleportacja nastapi za §98s"));
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run(){
@@ -113,6 +115,9 @@ public class TpAccept implements CommandExecutor {
                                                                                                         public void run() {
                                                                                                             if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                 p2.teleport(p);
+                                                                                                                if (plugin.getConfig().getBoolean("logs")) {
+                                                                                                                    plugin.getLogger().log(Level.INFO, "Gracz " + p2.getName() + " teleportowal sie do gracza " + p.getName() + " (/tpa)");
+                                                                                                                }
                                                                                                                 p2.sendMessage("§7Pomyślnie przeteleportowano ciebie do gracza §9" + p.getName());
                                                                                                             }
                                                                                                         }
@@ -141,6 +146,9 @@ public class TpAccept implements CommandExecutor {
             } else {
                 p2.teleport(p);
                 p2.sendMessage("§7Pomyślnie przeteleportowano ciebie do gracza §9" + p.getName());
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p2.getName() + " teleportowal sie do gracza " + p.getName() + " (/tpa)");
+                }
             }
         } else {
             p.sendMessage("§7Gracz który prosil o teleportacje jest §coffline");

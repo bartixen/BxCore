@@ -14,6 +14,7 @@ import java.net.InetSocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class TempBanCommand implements CommandExecutor {
 
@@ -73,11 +74,14 @@ public class TempBanCommand implements CommandExecutor {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie zbanowany");
+                        sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie zbanowany");
                         for (Player players : Bukkit.getOnlinePlayers()) {
                             if (players.hasPermission("bxcore.commands.tempban") || players.isOp()) {
-                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal zbanowany tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7został zbanowany tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
                             }
+                        }
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal zbanowany tymczasowo przez " + sender.getName() + " z powodem " + msg);
                         }
                         return false;
                     }
@@ -99,11 +103,14 @@ public class TempBanCommand implements CommandExecutor {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    sender.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal pomyślnie zbanowany");
+                    sender.sendMessage("§7Gracz §9" + cel.getName() + " §7został pomyślnie zbanowany");
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         if (players.hasPermission("bxcore.commands.tempban") || players.isOp()) {
-                            players.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal zbanowany tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                            players.sendMessage("§7Gracz §9" + cel.getName() + " §7został zbanowany tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
                         }
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + cel.getName() + " zostal zbanowany tymczasowo przez " + sender.getName() + " z powodem " + msg);
                     }
                     cel.kickPlayer("\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
                 } else {

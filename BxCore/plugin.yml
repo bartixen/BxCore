@@ -1,8 +1,8 @@
 main: pl.bartixen.bxcore.Main
-version: 5.1.1
+version: 5.2.1
 author: Bartixen
 name: BxCore
-api-version: 1.17
+api-version: 1.17.1
 website: https://bartixen.pl
 description: Core serwera
 depend: [BxAuth]

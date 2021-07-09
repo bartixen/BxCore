@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import pl.bartixen.bxcore.Main;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class GodCommand implements CommandExecutor, Listener {
 
@@ -36,10 +37,16 @@ public class GodCommand implements CommandExecutor, Listener {
                 Player p = (Player) sender;
                 if (gods.contains(p.getName())) {
                     gods.remove(p.getName());
-                    p.sendMessage("§7Zmieniono nieśmiertelność na §cOFF");
+                    p.sendMessage("§7Nieśmiertelność została §cwyłączona");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " wylaczyl niesmiertelnosc");
+                    }
                 } else {
                     gods.add(p.getName());
-                    p.sendMessage("§7Zmieniono nieśmiertelność na §aON");
+                    p.sendMessage("§7Nieśmiertelność została §awłączona");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "§7Gracz §9" + p.getName() + " §7wlaczyl niesmiertelnosc");
+                    }
                 }
                 return false;
             } else {
@@ -51,12 +58,18 @@ public class GodCommand implements CommandExecutor, Listener {
                     }
                     if (gods.contains(cel.getName())) {
                         gods.remove(cel.getName());
-                        cel.sendMessage("§7Zmieniono nieśmiertelność na §cOFF §7przez gracza §9" + sender.getName());
-                        sender.sendMessage("§7Poprawne ustawiono graczu §9" + cel.getName() + " §7nieśmiertelność na §cOFF");
+                        cel.sendMessage("§cWyłączono §7nieśmiertelność §7przez gracza §9" + sender.getName());
+                        sender.sendMessage("§7Poprawne §cwyłączono §7nieśmiertelność graczu §9" + cel.getName());
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl niesmiertelnosc dla §9" + cel.getName());
+                        }
                     } else {
                         gods.add(cel.getName());
-                        cel.sendMessage("§7Zmieniono nieśmiertelność na §aON §7przez gracza §9" + sender.getName());
-                        sender.sendMessage("§7Poprawne ustawiono graczu §9" + cel.getName() + " §7nieśmiertelność na §aON");
+                        cel.sendMessage("§aWłączono §7nieśmiertelność §7przez gracza §9" + sender.getName());
+                        sender.sendMessage("§7Poprawne §awłączono §7nieśmiertelność graczu §9" + cel.getName());
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl niesmiertelnosc dla §9" + cel.getName());
+                        }
                     }
                 } else {
                     sender.sendMessage("§7Poprawne użycie: §9/god [gracz]");

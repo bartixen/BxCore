@@ -48,7 +48,10 @@ public class HomeListener implements Listener {
                 if (e.getCurrentItem().getType().equals(Material.DIAMOND)) {
                     e.setCancelled(true);
                     player.closeInventory();
-                    player.kickPlayer("§7Ta czynność jest zablokowana");
+                    player.kickPlayer("§cTa czynność jest zablokowana");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.WARNING, "Gracz " + player.getName() + " probowal zmienic nazwe zablokowanego przedmiotu");
+                    }
                 }
             }
         }
@@ -164,6 +167,9 @@ public class HomeListener implements Listener {
                                                                                                                     if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                         p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
                                                                                                                         p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                                                                                                                        if (plugin.getConfig().getBoolean("logs")) {
+                                                                                                                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }, 20);
@@ -191,6 +197,9 @@ public class HomeListener implements Listener {
                     } else {
                         p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
                         p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                        }
                     }
                 } else {
                     p.closeInventory();
@@ -293,6 +302,9 @@ public class HomeListener implements Listener {
                                                                                                                     public void run() {
                                                                                                                         if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                             p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
+                                                                                                                            if (plugin.getConfig().getBoolean("logs")) {
+                                                                                                                                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                                                                                                                            }
                                                                                                                             p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
                                                                                                                         }
                                                                                                                     }
@@ -321,6 +333,9 @@ public class HomeListener implements Listener {
                         } else {
                             p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
                             p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                            }
                         }
                     } else {
                         p.closeInventory();
@@ -348,6 +363,9 @@ public class HomeListener implements Listener {
             hd.getData().set(uuid + ".homes.home" + jakihome, null);
             hd.saveData();
             p.sendMessage("§7Twój dom §9Dom #" + jakihome + " §7zostal pomyślnie usuniety");
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " usuna Dom #" + jakihome);
+            }
         }
     }
 
@@ -473,6 +491,9 @@ public class HomeListener implements Listener {
             hd.getData().set(uuid + ".homes.setname.home1", null);
             hd.saveData();
             p.sendMessage("§7Twoja nazwa dla domu §9Dom #1 §7to: §9" + messange);
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " ustawil nazwe Dom #1 na: " + messange);
+            }
             e.setCancelled(true);
         }
         String home2 = hd.getData().getString(uuid + ".homes.setname.home2");
@@ -482,6 +503,9 @@ public class HomeListener implements Listener {
             hd.getData().set(uuid + ".homes.setname.home2", null);
             hd.saveData();
             p.sendMessage("§7Twoja nazwa dla domu §9Dom #2 §7to: §9" + messange);
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " ustawil nazwe Dom #2 na: " + messange);
+            }
             e.setCancelled(true);
         }
         String home3 = hd.getData().getString(uuid + ".homes.setname.home3");
@@ -491,6 +515,9 @@ public class HomeListener implements Listener {
             hd.getData().set(uuid + ".homes.setname.home3", null);
             hd.saveData();
             p.sendMessage("§7Twoja nazwa dla domu §9Dom #3 §7to: §9" + messange);
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " ustawil nazwe Dom #3 na: " + messange);
+            }
             e.setCancelled(true);
         }
         String home4 = hd.getData().getString(uuid + ".homes.setname.home4");
@@ -500,6 +527,9 @@ public class HomeListener implements Listener {
             hd.getData().set(uuid + ".homes.setname.home4", null);
             hd.saveData();
             p.sendMessage("§7Twoja nazwa dla domu §9Dom #4 §7to: §9" + messange);
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " ustawil nazwe Dom #4 na: " + messange);
+            }
             e.setCancelled(true);
         }
         String home5 = hd.getData().getString(uuid + ".homes.setname.home5");
@@ -509,6 +539,9 @@ public class HomeListener implements Listener {
             hd.getData().set(uuid + ".homes.setname.home5", null);
             hd.saveData();
             p.sendMessage("§7Twoja nazwa dla domu §9Dom #5 §7to: §9" + messange);
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " ustawil nazwe Dom #5 na: " + messange);
+            }
             e.setCancelled(true);
         }
     }

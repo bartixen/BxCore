@@ -16,6 +16,7 @@ import pl.bartixen.bxcore.Data.AntyLogutDataManager;
 import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 public class AntyLogut extends BukkitRunnable implements Listener {
 
@@ -47,6 +48,9 @@ public class AntyLogut extends BukkitRunnable implements Listener {
                 String nick = antylogutd.getData().getString(p.getDisplayName() + ".kto");
                 for (Player players : Bukkit.getOnlinePlayers()) {
                     players.sendMessage("§fGracz §9" + p.getName() + " §fwylogowal sie podczas walki z §9" + nick);
+                }
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " wylogowal sie podczas walki z " + nick);
                 }
             }
         }

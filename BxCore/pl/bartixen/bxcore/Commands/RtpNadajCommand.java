@@ -8,6 +8,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class RtpNadajCommand implements CommandExecutor {
 
@@ -40,8 +41,11 @@ public class RtpNadajCommand implements CommandExecutor {
                         e.printStackTrace();
                     }
                     sender.sendMessage("§7Poprawnie dodano nowy przycisk rtp §9X §b" + x + " §9Y §b" + y + " §9Z §b" + z);
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " dodal nowy przcisk rtp na kordynatach: X - " + x + " Y - " + y + " Z - " + z);
+                    }
                 } else {
-                    sender.sendMessage("§Taki przycisk już istnieje");
+                    sender.sendMessage("§7Taki przycisk już istnieje");
                 }
             } else {
                 sender.sendMessage("§7Poprawne użycie: §9/rtpnadaj [x] [y] [z]");

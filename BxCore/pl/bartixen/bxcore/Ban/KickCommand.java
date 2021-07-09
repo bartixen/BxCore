@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class KickCommand implements CommandExecutor {
 
     Main plugin;
@@ -40,6 +42,9 @@ public class KickCommand implements CommandExecutor {
                     if (players.hasPermission("bxcore.commands.kick") || players.isOp()) {
                         players.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal wyrzucony przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
                     }
+                }
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + cel.getName() + " zostal wyrzucony przez " + sender.getName() + " z powodem " + msg);
                 }
             } else {
                 sender.sendMessage("§7Poprawne użycie: §9/kick [gracz] [powód]");

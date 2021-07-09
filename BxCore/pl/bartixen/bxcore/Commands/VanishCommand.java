@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class VanishCommand implements CommandExecutor {
 
     Main plugin;
@@ -35,6 +37,9 @@ public class VanishCommand implements CommandExecutor {
                     }
                     cel.sendMessage("§7Jesteś teraz §cwidoczny §7przez §9" + sender.getName());
                     sender.sendMessage("§7Gracz §9" + cel.getName() + "§7jest teraz §cwidoczny");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl vanish dla " + cel.getName());
+                    }
                 } else {
                     plugin.invisible.add(cel);
                     for (Player players : Bukkit.getOnlinePlayers()) {
@@ -44,6 +49,9 @@ public class VanishCommand implements CommandExecutor {
                     }
                     cel.sendMessage("§7Jesteś teraz §aniewidoczny §7przez §9" + sender.getName());
                     sender.sendMessage("§7Gracz §9" + cel.getName() + "§7jest teraz §aniewidoczny");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl vanish dla " + cel.getName());
+                        }
                 }
             } else {
                 sender.sendMessage("§7Poprawne użycie: §9/v [gracz]");
@@ -58,6 +66,9 @@ public class VanishCommand implements CommandExecutor {
                         players.showPlayer(p);
                     }
                     p.sendMessage("§7Jesteś teraz §cwidoczny");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl vanish");
+                    }
                 } else {
                     plugin.invisible.add(p);
                     for (Player players : Bukkit.getOnlinePlayers()) {
@@ -66,6 +77,9 @@ public class VanishCommand implements CommandExecutor {
                         }
                     }
                     p.sendMessage("§7Jesteś teraz §aniewidoczny");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl vanish");
+                    }
                     p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aJestes obecnie niewidoczny"));
                 }
             } else {

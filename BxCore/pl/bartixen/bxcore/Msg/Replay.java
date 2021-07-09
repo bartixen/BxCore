@@ -10,6 +10,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class Replay implements CommandExecutor {
 
@@ -36,7 +37,7 @@ public class Replay implements CommandExecutor {
         if (args.length >= 1) {
             Player cel = Bukkit.getPlayer(msgd.getData().getString(puuid + ".lastPlayer"));
             if (cel == null) {
-                p.sendMessage("§7Gracz do którego ostatnio pisaleś jest §coffline");
+                p.sendMessage("§7Gracz do którego ostatnio pisałeś jest §coffline");
                 return true;
             }
 
@@ -60,8 +61,11 @@ public class Replay implements CommandExecutor {
             }
             for (Player players : Bukkit.getOnlinePlayers()) {
                 UUID uuid = players.getUniqueId();
-                if(msgd.getData().getConfigurationSection(uuid + ".socialspy") !=null){
+                if (msgd.getData().getConfigurationSection(uuid + ".socialspy") !=null) {
                     players.sendMessage("§8[§9" + p.getName() + " §8-> §9" + cel.getName() + "§8] §a" + msg);
+                }
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "[" + p.getName() + " -> " + cel.getName() + "] " + msg);
                 }
             }
         } else {

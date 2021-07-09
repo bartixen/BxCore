@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class SpawnCommand implements CommandExecutor {
 
     Main plugin;
@@ -112,6 +114,9 @@ public class SpawnCommand implements CommandExecutor {
                                                                                                         public void run() {
                                                                                                             if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                 p.teleport(new Location(p.getServer().getWorld(world), x, y, z, yaw, pitch));
+                                                                                                                if (plugin.getConfig().getBoolean("logs")) {
+                                                                                                                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie na spawn");
+                                                                                                                }
                                                                                                                 p.sendMessage("§7Pomyślnie przeteleportowano ciebie na spawn");
                                                                                                             }
                                                                                                         }
@@ -140,6 +145,9 @@ public class SpawnCommand implements CommandExecutor {
             } else {
                 p.teleport(new Location(p.getServer().getWorld(world), x, y, z, yaw, pitch));
                 p.sendMessage("§7Pomyślnie przeteleportowano ciebie na spawn");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie na spawn");
+                }
             }
         } else {
             sender.sendMessage("§7Brak permisji: §9bxcore.commands.spawn");

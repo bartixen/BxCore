@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class HealCommand implements CommandExecutor {
 
     Main plugin;
@@ -29,6 +31,9 @@ public class HealCommand implements CommandExecutor {
                 p.setFireTicks(0);
                 p.setFoodLevel(20);
                 p.sendMessage("§7Zostaleś uleczony");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " uleczyl sie");
+                }
                 return false;
             } else {
                 if (args.length == 1) {
@@ -42,6 +47,9 @@ public class HealCommand implements CommandExecutor {
                     cel.setFoodLevel(20);
                     cel.sendMessage("§7Zostaleś uleczony przez §9" + sender.getName());
                     sender.sendMessage("§7Poprawne uleczono gracza §9" + cel.getName());
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + cel.getName() + " zostal uleczony przez " + sender.getName());
+                    }
                 } else {
                     sender.sendMessage("§7Poprawne użycie: §9/heal [gracz]");
                 }

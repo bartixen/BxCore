@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class Ignore implements CommandExecutor {
 
@@ -58,6 +59,9 @@ public class Ignore implements CommandExecutor {
                     e.printStackTrace();
                 }
                 p.sendMessage("§7Gracz §9" + cel.getDisplayName() + " §7zostal dodany do listy ignorowanych");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " dodal do listy ignorowanych gracza " + cel.getName());
+                }
             } else {
                 ignored.remove(cel.getDisplayName());
                 msgd.getData().set(puuid + ".ignored", ignored);
@@ -67,6 +71,9 @@ public class Ignore implements CommandExecutor {
                     e.printStackTrace();
                 }
                 p.sendMessage("§7Gracz §9" + cel.getDisplayName() + " §7zostal usuniety do listy ignorowanych");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " usuna z listy ignorowanych gracza " + cel.getName());
+                }
             }
         } else {
             p.sendMessage("§7Poprawne użycie: §9/ignore [gracz]");

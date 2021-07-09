@@ -11,6 +11,7 @@ import pl.bartixen.bxcore.Main;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
 
 public class TempMuteCommand implements CommandExecutor {
 
@@ -64,11 +65,14 @@ public class TempMuteCommand implements CommandExecutor {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie wyciszony");
+                        sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie wyciszony");
                         for (Player players : Bukkit.getOnlinePlayers()) {
                             if (players.hasPermission("bxcore.commands.tempmute") || players.isOp()) {
-                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal wyciszony tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7został wyciszony tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
                             }
+                        }
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal wyciszony tymczasowo przez " + sender.getName() + " z powodem " + msg);
                         }
                         return false;
                     }
@@ -91,11 +95,14 @@ public class TempMuteCommand implements CommandExecutor {
                     cel.sendMessage("");
                     cel.sendMessage("§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •");
                     cel.sendMessage("");
-                    sender.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal pomyślnie wyciszony");
+                    sender.sendMessage("§7Gracz §9" + cel.getName() + " §7został pomyślnie wyciszony");
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         if (players.hasPermission("bxcore.commands.tempmute") || players.isOp()) {
-                            players.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal wyciszony tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
+                            players.sendMessage("§7Gracz §9" + cel.getName() + " §7został wyciszony tymczasowo przez §9" + sender.getName() +  "§7 z powodem §9" + msg);
                         }
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + cel.getName() + " zostal wyciszony tymczasowo przez " + sender.getName() + " z powodem " + msg);
                     }
                 } else {
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7jest już wyciszony");

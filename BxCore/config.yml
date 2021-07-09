@@ -1,3 +1,6 @@
+#Klucz licencji do pluginu
+key: o4398fJHBDsgjasdfbgLKHFASdfv9qa32bsd
+
 #Nazwa serwera | bedzie ona wyswietlana w wielu miejscach
 nazwa: MC.SERWER.PL
 
@@ -35,6 +38,9 @@ unknowncommand: true
 
 #Wlasne wiadomosci powitalne
 joinquitmessage: true
+
+#Wysylanie logow do konsoli z kazdej komendy/eventu
+logs: true
 
 #Jak to jest wlaczone to wystarczy aby tylko jeden gracz sie przespal aby byl dzien
 oneplayersleep: true

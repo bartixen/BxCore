@@ -28,8 +28,8 @@ public class TpSystem {
     }
 
    public static void sendRequest(Player p, Player p2) {
-       p.sendMessage("§7Wyslano prośbe teleportacji do gracza §9" + p2.getName());
-       p2.sendMessage("§7Gracz §9" + p.getName() + " §7wyslal prośbe o teleportacje do ciebie");
+       p.sendMessage("§7Wysłano prośbe teleportacji do gracza §9" + p2.getName());
+       p2.sendMessage("§7Gracz §9" + p.getName() + " §7wysłał prośbe o teleportacje do ciebie");
        p2.sendMessage("§7Wpisz §9/tpaccept §7aby zakceptować teleportacje");
        p2.sendMessage("§7Wpisz §9/tpdeny §7aby odrzucić teleportacje");
 

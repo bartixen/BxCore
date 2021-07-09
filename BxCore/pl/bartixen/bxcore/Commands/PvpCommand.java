@@ -19,6 +19,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 public class PvpCommand implements CommandExecutor, Listener {
 
@@ -59,18 +60,19 @@ public class PvpCommand implements CommandExecutor, Listener {
                 }
                 Player p = (Player) sender;
                 if (userd.getData().getBoolean(sender.getName() + ".pvp")) {
-                    if (p.getInventory().contains(Material.DIAMOND, 8)) {
-                        removeItems((Inventory) p.getInventory(), Material.DIAMOND, 8);
-                        userd.getData().set(sender.getName() + ".pvp", false);
-                        try {
-                            userd.saveData();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        sender.sendMessage("§7Pomyślnie §cwylaczono §7PVP");
-                    } else {
-                        sender.sendMessage("§7Aby wylaczyc PVP należy mieć §98 diax");
-                    }
+//                    if (p.getInventory().contains(Material.DIAMOND, 8)) {
+//                        removeItems((Inventory) p.getInventory(), Material.DIAMOND, 8);
+//                        userd.getData().set(sender.getName() + ".pvp", false);
+//                        try {
+//                            userd.saveData();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        sender.sendMessage("§7Pomyślnie §cwylaczono §7PVP");
+//                    } else {
+//                        sender.sendMessage("§7Aby wylaczyc PVP należy mieć §98 diax");
+//                    }
+                    p.sendMessage("§7Masz już włączone PVP");
                 } else {
                     userd.getData().set(sender.getName() + ".pvp", true);
                     try {
@@ -78,7 +80,10 @@ public class PvpCommand implements CommandExecutor, Listener {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    sender.sendMessage("§7Pomyślnie §awlaczono §7PVP");
+                    sender.sendMessage("§7Pomyślnie §awłączono §7PVP");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl PVP");
+                    }
                 }
             } else {
                 if (args.length == 1) {
@@ -95,8 +100,11 @@ public class PvpCommand implements CommandExecutor, Listener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            sender.sendMessage("§7Pomyślnie §cwylaczono §7PVP dla gracza §9" + cel.getName());
-                            cel.sendMessage("§7Pomyślnie §cwylaczono §7PVP przez §9" + cel.getName());
+                            sender.sendMessage("§7Pomyślnie §cwyłączono §7PVP dla gracza §9" + cel.getName());
+                            cel.sendMessage("§7Pomyślnie §cwyłączono §7PVP przez §9" + cel.getName());
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl PVP dla " + cel.getName());
+                            }
                         } else {
                             userd.getData().set(sender.getName() + ".pvp", true);
                             try {
@@ -104,8 +112,11 @@ public class PvpCommand implements CommandExecutor, Listener {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            sender.sendMessage("§7Pomyślnie §awlaczono §7PVP dla gracza §9" + cel.getName());
-                            cel.sendMessage("§7Pomyślnie §awlaczono §7PVP przez gracza §9" + cel.getName());
+                            sender.sendMessage("§7Pomyślnie §awłączono §7PVP dla gracza §9" + cel.getName());
+                            cel.sendMessage("§7Pomyślnie §awłączono §7PVP przez gracza §9" + cel.getName());
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl PVP dla " + cel.getName());
+                            }
                         }
                     } else {
                         sender.sendMessage("§7Brak permisji: §9bxcore.commands.pvp");

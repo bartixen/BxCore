@@ -8,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class GamemodeCommand implements CommandExecutor {
 
     Main plugin;
@@ -34,6 +36,9 @@ public class GamemodeCommand implements CommandExecutor {
                 Player p = (Player) sender;
                 p.setGameMode(mode);
                 p.sendMessage("§7Zmieniono tryb gry na §9" + mode);
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "§7Gracz §9" + p.getName() + " §7ustawił tryb gry na §9" + mode);
+                }
                 return false;
             } else {
                 if (args.length == 2) {
@@ -50,6 +55,9 @@ public class GamemodeCommand implements CommandExecutor {
                     cel.setGameMode(mode);
                     cel.sendMessage("§7Zmieniono tryb gry na §9" + mode + " §7przez gracza §9" + sender.getName());
                     sender.sendMessage("§7Poprawne ustawiono graczu §9" + cel.getName() + " §7tryb gry na §9" + mode);
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " ustawil tryb gry na " + mode + " dla " + cel.getName());
+                    }
                 } else {
                     sender.sendMessage("§7Poprawne użycie: §9/gm [0,1,2,3]");
                     return false;
@@ -65,6 +73,9 @@ public class GamemodeCommand implements CommandExecutor {
                 Player p = (Player) sender;
                 p.setGameMode(mode);
                 p.sendMessage("§7Zmieniono tryb gry na §9" + mode);
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " ustawil tryb gry na " + mode);
+                }
                 return false;
             } else {
                 sender.sendMessage("§7Brak permisji: §9bxcore.commands.gamemode");

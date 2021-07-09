@@ -8,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class TpCommand implements CommandExecutor {
 
     Main plugin;
@@ -34,6 +36,9 @@ public class TpCommand implements CommandExecutor {
                 }
                 p.teleport(cel.getLocation());
                 p.sendMessage("§7Przeteleportowano do gracza §9" + cel.getName());
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal sie do " + cel.getName());
+                }
             } else {
                 if (args.length == 2) {
                     Player cel1 = Bukkit.getPlayerExact(args[0]);
@@ -49,6 +54,9 @@ public class TpCommand implements CommandExecutor {
                     cel1.teleport(cel2.getLocation());
                     sender.sendMessage("§7Przeteleportowano gracza §9" + cel1.getName() + " §7do gracza §9" + cel2.getName());
                     cel1.sendMessage("§7Przeteleportowano ciebie do gracza §9" + cel2.getName() + " §7przez §9" + sender.getName());
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal gracza " + cel1.getName() + " do " + cel2.getName());
+                    }
                 } else {
                     if (args.length == 3) {
                         if (!(sender instanceof Player)) {
@@ -62,6 +70,9 @@ public class TpCommand implements CommandExecutor {
                         if (!(x > 30000000 || y > 30000000 || z > 30000000 || x < -30000000 || y < -30000000 || z < -30000000)) {
                             p.teleport(new Location(p.getWorld(), x, y, z, p.getLocation().getYaw(), p.getLocation().getPitch()));
                             p.sendMessage("§7Przeteleportowano ciebie na koordynaty: §9X " + x + " §9Y " + y + " §9Z " + z);
+                            if (plugin.getConfig().getBoolean("logs")) {
+                                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal sie na kordy X - " + x + " Y - " + y + " Z - " + z);
+                            }
                         } else {
                             sender.sendMessage("§7Podano nieprawidlowe koordynaty");
                         }

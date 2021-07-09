@@ -11,6 +11,7 @@ import pl.bartixen.bxcore.Main;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
 
 public class UnMuteCommand implements CommandExecutor {
 
@@ -39,11 +40,14 @@ public class UnMuteCommand implements CommandExecutor {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    sender.sendMessage("§7Gracz §9" + args[0] + " §7zostal pomyślnie odciszony");
+                    sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie odciszony");
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         if (players.hasPermission("bxcore.commands.unmute") || players.isOp()) {
                             players.sendMessage("§7Gracz §9" + args[0] + " §7zostal odciszony przez §9" + sender.getName());
                         }
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal odciszony przez " + sender.getName());
                     }
                 } else {
                     if ((band.getData().getString(args[0] + ".tempmute")) != null) {
@@ -54,6 +58,15 @@ public class UnMuteCommand implements CommandExecutor {
                             band.saveData();
                         } catch (IOException e) {
                             e.printStackTrace();
+                        }
+                        sender.sendMessage("§7Gracz §9" + args[0] + " §7został pomyślnie odciszony");
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            if (players.hasPermission("bxcore.commands.unmute") || players.isOp()) {
+                                players.sendMessage("§7Gracz §9" + args[0] + " §7zostal odciszony przez §9" + sender.getName());
+                            }
+                        }
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal odciszony przez " + sender.getName());
                         }
                     } else {
                         sender.sendMessage("§7Gracz §9" + args[0] + " §7nie jest wyciszony");

@@ -13,6 +13,7 @@ import pl.bartixen.bxcore.Data.RtpDataManager;
 import pl.bartixen.bxcore.Main;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 public class Rtp implements Listener {
 
@@ -50,6 +51,9 @@ public class Rtp implements Listener {
                 loc.setY((double) (loc.getWorld().getHighestBlockYAt(loc) + 3));
                 p.teleport(loc);
                 p.sendMessage("§7Zostales przeteleportowany na kordy §9X §b" + x + " §9Z §b" + z);
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie w losowe kordynaty: X - " + x + " Z - " + z);
+                }
             }
         }
     }

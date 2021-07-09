@@ -9,6 +9,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class Socialspy implements CommandExecutor {
 
@@ -40,6 +41,9 @@ public class Socialspy implements CommandExecutor {
                     e.printStackTrace();
                 }
                 p.sendMessage("§7Podglad wiadomości prywatnych zostal §cwylaczony");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl podglad prywatnych wiadomosci");
+                }
             } else {
                 msgd.getData().set(uuid + ".socialspy.use", true);
                 try {
@@ -48,6 +52,9 @@ public class Socialspy implements CommandExecutor {
                     e.printStackTrace();
                 }
                 p.sendMessage("§7Podglad wiadomości prywatnych zostal §awlaczony");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl podglad prywatnych wiadomosci");
+                }
             }
         } else {
             p.sendMessage("§7Brak permisji: §9bxcore.commands.socialspy");

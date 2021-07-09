@@ -11,6 +11,7 @@ import pl.bartixen.bxcore.Main;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class Msg implements CommandExecutor {
 
@@ -56,8 +57,11 @@ public class Msg implements CommandExecutor {
             if (!celIgnored.contains(p.getDisplayName())) {
                 for (Player players : Bukkit.getOnlinePlayers()) {
                     UUID uuid = players.getUniqueId();
-                    if(msgd.getData().getConfigurationSection(uuid + ".socialspy") !=null){
+                    if (msgd.getData().getConfigurationSection(uuid + ".socialspy") !=null) {
                         players.sendMessage("§8[§9" + p.getName() + " §8-> §9" + cel.getName() + "§8] §a" + msg);
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "[" + p.getName() + " -> " + cel.getName() + "] " + msg);
                     }
                 }
                 p.sendMessage("§8[§2Ja §8-> §9" + cel.getName() + "§8] §a" + msg);

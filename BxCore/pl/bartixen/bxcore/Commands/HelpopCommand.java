@@ -40,7 +40,7 @@ public class HelpopCommand implements CommandExecutor {
                     players.sendMessage("§8§l[§c§lHELPOP§8§l] §e§lGracz §c§l" + p.getName() + " §e§lnapisal: §c§l" + msg);
                 }
             }
-            plugin.getLogger().log(Level.WARNING, "§8§l[§c§lHELPOP§8§l] §e§lGracz §c§l" + p.getName() + " §e§lnapisal: §c§l" + msg);
+            plugin.getLogger().log(Level.WARNING, "§c[HELPOP] Gracz " + p.getName() + " napisal: " + msg);
         } else {
             sender.sendMessage("§7Poprawne użycie: §9/helpop [wiadomosc]");
         }

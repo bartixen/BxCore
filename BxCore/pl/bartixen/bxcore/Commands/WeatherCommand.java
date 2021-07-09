@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class WeatherCommand implements CommandExecutor {
 
     Main plugin;
@@ -28,12 +30,18 @@ public class WeatherCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("sun")) {
                     p.getWorld().setWeatherDuration(1);
                     p.getWorld().setThundering(false);
-                    p.sendMessage("§7Ustawiono pogodę sloneczną na danym świecie");
+                    p.sendMessage("§7Ustawiono pogodę słoneczną na świecie");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " ustawil pogode sloneczna na swiecie");
+                    }
                 } else {
                     if (args[0].equalsIgnoreCase("storm")) {
                         p.getWorld().setWeatherDuration(300);
                         p.getWorld().setThundering(true);
                         p.sendMessage("§7Ustawiono pogodę burzową na danym świecie");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " ustawil pogode burzowa na swiecie");
+                        }
                     } else {
                         sender.sendMessage("§7Poprawne użycie: §9/weather [sun,storm]");
                     }

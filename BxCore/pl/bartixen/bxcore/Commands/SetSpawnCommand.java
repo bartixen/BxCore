@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class SetSpawnCommand implements CommandExecutor {
 
     Main plugin;
@@ -36,6 +38,9 @@ public class SetSpawnCommand implements CommandExecutor {
             plugin.getConfig().set("spawn.pitch", pitch);
             plugin.getConfig().set("spawn.world", world);
             plugin.saveConfig();
+            if (plugin.getConfig().getBoolean("logs")) {
+                plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " ustawil nowe kordynaty spawnu: X - " + x + " Y - " + y + " Z - " + z + " YAW - " + yaw + " PITCH - " + pitch + " WORLD - " + world);
+            }
             p.sendMessage("§7Ustawiono spawn na kordynatach §9X - §b" + x + " §9Y - §b" + y + " §9Z - §b" + z + " §9YAW - §b" + yaw + " §9PITCH - §b" + pitch + " §9WORLD - §b" + world);
         } else {
             p.sendMessage("§7Brak permisji: §9bxcore.commands.setspawn");

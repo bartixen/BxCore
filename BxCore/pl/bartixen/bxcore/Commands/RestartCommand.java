@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class RestartCommand implements CommandExecutor {
 
     Main plugin;
@@ -22,7 +24,7 @@ public class RestartCommand implements CommandExecutor {
     }
 
     public void anulurrestart(BossBar bar) {
-        bar.setTitle("§c§lRestart zostal anulowany");
+        bar.setTitle("§c§lRestart został anulowany");
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
             public void run() {
                 bar.removeAll();
@@ -156,12 +158,18 @@ public class RestartCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender.hasPermission("bxcore.commands.restart") || sender.isOp()) {
             if (!restart) {
-                sender.sendMessage("§cRestart zostal aktywowany");
+                sender.sendMessage("§cRestart został aktywowany");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.WARNING, "Gracz " + sender.getName() + " aktywowal restart");
+                }
                 restart = true;
                 bossbar();
             } else {
                 restart = false;
                 sender.sendMessage("§cAnulowano restart serwera");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.WARNING, "Gracz " + sender.getName() + " anulowal restart");
+                }
             }
         } else {
             sender.sendMessage("§7Brak permisji: §9bxcore.commands.restart");

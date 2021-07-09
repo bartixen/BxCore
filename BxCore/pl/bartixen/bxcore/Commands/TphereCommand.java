@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class TphereCommand implements CommandExecutor {
 
     Main plugin;
@@ -34,6 +36,9 @@ public class TphereCommand implements CommandExecutor {
                 cel.teleport(p.getLocation());
                 p.sendMessage("§7Przeteleportowano gracza §9" + cel.getName() + " §7do ciebie");
                 cel.sendMessage("§7Przeteleportowano ciebie do gracza §9" + p.getName());
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " teleportowal do siebie " + cel.getName());
+                }
             } else {
                 sender.sendMessage("§7Poprawne użycie: §9/s [gracz]");
             }

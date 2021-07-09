@@ -21,6 +21,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
 
 public class LvLDragon implements Listener {
 
@@ -60,11 +61,17 @@ public class LvLDragon implements Listener {
                 if (n == 1) {
                     event.getEntity().getKiller().getInventory().addItem(new ItemStack[]{new ItemStack(Material.ELYTRA)});
                     for (Player players : Bukkit.getOnlinePlayers()) {
-                        players.sendMessage("§fGracz §9" + event.getEntity().getKiller().getDisplayName() + " §fzabil smoka §7(przez co zdobyl elytre)");
+                        players.sendMessage("§fGracz §9" + event.getEntity().getKiller().getDisplayName() + " §fzabil smoka §7(przez co zdobył elytre)");
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + event.getEntity().getKiller().getDisplayName() + " zabil smoka (przez co zdobyl elytre)");
                     }
                 } else {
                     for (Player players : Bukkit.getOnlinePlayers()) {
-                        players.sendMessage("§fGracz §9" + event.getEntity().getKiller().getDisplayName() + " §fzabil smoka §7(niestety elytra nie wypadla)");
+                        players.sendMessage("§fGracz §9" + event.getEntity().getKiller().getDisplayName() + " §fzabil smoka §7(niestety elytra nie wypadła)");
+                    }
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + event.getEntity().getKiller().getDisplayName() + " zabil smoka (niestety elytra nie wypadla)");
                     }
                 }
             }

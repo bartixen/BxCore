@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class BroadCastCommand implements CommandExecutor {
 
     Main plugin;
@@ -33,6 +35,9 @@ public class BroadCastCommand implements CommandExecutor {
                     players.sendMessage("§c§l" + msg);
                 }
                 sender.sendMessage("§7Wyslano pomyślnie alert");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyslal alert o tresci §9" + msg);
+                }
             } else {
                 sender.sendMessage("§7Poprawne użycie: §9/bc [wiadomosc]");
             }

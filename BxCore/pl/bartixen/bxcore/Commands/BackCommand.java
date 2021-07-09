@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import pl.bartixen.bxcore.Main;
 
 import java.util.HashMap;
+import java.util.logging.Level;
 
 public class BackCommand implements CommandExecutor, Listener {
 
@@ -38,6 +39,9 @@ public class BackCommand implements CommandExecutor, Listener {
                     p.teleport(this.back.get(p));
                     this.back.remove(p);
                     p.sendMessage("§7Pomyślnie przeteleportowano ciebie do ostatniej lokalizacji");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do poprzedniej lokalizacji");
+                    }
                 } else {
                     p.sendMessage("§7Nie znaleziono poprzedniej lokalizacji");
                 }
@@ -51,6 +55,9 @@ public class BackCommand implements CommandExecutor, Listener {
                     if (this.back.containsKey(p)) {
                         p.teleport(this.back.get(p));
                         p.sendMessage("§7Pomyślnie przeteleportowano ciebie do ostatniej lokalizacji przez §9" + sender.getName());
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do poprzedniej lokalizacji przez " + sender.getName());
+                        }
                     } else {
                         sender.sendMessage("§7Nie znaleziono poprzedniej lokalizacji");
                     }

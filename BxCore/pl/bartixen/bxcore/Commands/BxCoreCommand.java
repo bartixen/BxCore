@@ -42,49 +42,43 @@ public class BxCoreCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("reload")) {
                     sender.sendMessage("§8 • — • — • — • ");
                     plugin.reloadConfig();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9CONFIG");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9CONFIG");
                     hd.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9HOMEDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9HOMEDATAMENAGER");
                     msgd.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9MSGDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9MSGDATAMENAGER");
                     userd.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9USERDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9USERDATAMENAGER");
                     statyd.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9STATYDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9STATYDATAMENAGER");
                     band.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9BANDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9BANDATAMENAGER");
                     wld.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9WHITELISTDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9WHITELISTDATAMENAGER");
                     rtpd.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9RTPDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9RTPDATAMENAGER");
                     antyd.reloadData();
-                    sender.sendMessage("§7Pomyślnie przeladowano §9ANTYXRAYDATAMENAGER");
+                    sender.sendMessage("§7Pomyślnie przeładowano §9ANTYXRAYDATAMENAGER");
                     sender.sendMessage("§8 • — • — • — • ");
                 } else {
-                    sender.sendMessage("§7");
-                    sender.sendMessage("§7Plugin §eBxCore");
-                    sender.sendMessage("§7Version: §e" + version);
-                    sender.sendMessage("§7Author: §eBartixen");
-                    sender.sendMessage("§7Website: §ehttps://bartixen.pl");
-                    sender.sendMessage("§7");
+                    WiadomoscPlugin(sender, version);
                 }
             } else {
-                sender.sendMessage("§7");
-                sender.sendMessage("§7Plugin §eBxCore");
-                sender.sendMessage("§7Version: §e" + version);
-                sender.sendMessage("§7Author: §eBartixen");
-                sender.sendMessage("§7Website: §ehttps://bartixen.pl");
-                sender.sendMessage("§7");
+                WiadomoscPlugin(sender, version);
             }
         } else {
-            sender.sendMessage("§7");
-            sender.sendMessage("§7Plugin §eBxCore");
-            sender.sendMessage("§7Version: §e" + version);
-            sender.sendMessage("§7Author: §eBartixen");
-            sender.sendMessage("§7Website: §ehttps://bartixen.pl");
-            sender.sendMessage("§7");
+            WiadomoscPlugin(sender, version);
         }
         return false;
+    }
+
+    public void WiadomoscPlugin(CommandSender sender, String version) {
+        sender.sendMessage("§7");
+        sender.sendMessage("§7Plugin §eBxCore");
+        sender.sendMessage("§7Version: §e" + version);
+        sender.sendMessage("§7Author: §eBartixen");
+        sender.sendMessage("§7Website: §ehttps://bartixen.pl");
+        sender.sendMessage("§7");
     }
 
 }

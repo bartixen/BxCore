@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class FlyCommand implements CommandExecutor {
 
     Main plugin;
@@ -27,11 +29,17 @@ public class FlyCommand implements CommandExecutor {
                 Player p = (Player) sender;
                 if (p.getAllowFlight()) {
                     p.setAllowFlight(false);
-                    p.sendMessage("§7Latanie zostalo §cwylaczone");
+                    p.sendMessage("§7Latanie zostało §cwyłączone");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " wylaczyl latanie");
+                    }
                     return false;
                 } else {
                     p.setAllowFlight(true);
-                    p.sendMessage("§7Latanie zostalo §awlaczone");
+                    p.sendMessage("§7Latanie zostało §awłączone");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " wlaczyl latanie");
+                    }
                     return false;
                 }
             } else {
@@ -43,13 +51,15 @@ public class FlyCommand implements CommandExecutor {
                     }
                     if (cel.getAllowFlight()) {
                         cel.setAllowFlight(false);
-                        cel.sendMessage("§7Latanie zostalo §cwylaczone §7przez gracza §9" + sender.getName());
-                        sender.sendMessage("§7Poprawne §cwylaczono §7latanie graczu §9" + cel.getName());
+                        cel.sendMessage("§7Latanie zostalo §cwyłączone §7przez gracza §9" + sender.getName());
+                        sender.sendMessage("§7Poprawne §cwyłączono §7latanie graczu §9" + cel.getName());
+                        plugin.getLogger().log(Level.INFO,"Gracz " + sender.getName() + " wylaczyl latanie dla §9" + cel.getName());
                         return false;
                     } else {
                         cel.setAllowFlight(true);
-                        cel.sendMessage("§7Latanie zostalo §awlaczone §7przez gracza §9" + sender.getName());
-                        sender.sendMessage("§7Poprawne §awlaczono §7latanie graczu §9" + cel.getName());
+                        cel.sendMessage("§7Latanie zostalo §awłączone §7przez gracza §9" + sender.getName());
+                        sender.sendMessage("§7Poprawne §awłączono §7latanie graczu §9" + cel.getName());
+                        plugin.getLogger().log(Level.INFO,"Gracz " + sender.getName() + " wlaczyl latanie dla §9" + cel.getName());
                         return false;
                     }
                 } else {

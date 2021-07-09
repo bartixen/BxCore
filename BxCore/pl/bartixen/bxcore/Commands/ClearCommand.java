@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.bartixen.bxcore.Main;
 
+import java.util.logging.Level;
+
 public class ClearCommand implements CommandExecutor {
 
     Main plugin;
@@ -31,7 +33,10 @@ public class ClearCommand implements CommandExecutor {
                 p.getInventory().setChestplate(null);
                 p.getInventory().setHelmet(null);
                 p.getInventory().setHeldItemSlot(4);
-                p.sendMessage("§7Twój ekwipunek zostal wyczyszczony");
+                p.sendMessage("§7Twój ekwipunek został wyczyszczony");
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyczyszczyl sobie ekwipunek");
+                }
             } else {
                 if (args.length == 1) {
                     Player cel = Bukkit.getPlayerExact(args[0]);
@@ -45,8 +50,11 @@ public class ClearCommand implements CommandExecutor {
                     cel.getInventory().setChestplate(null);
                     cel.getInventory().setHelmet(null);
                     cel.getInventory().setHeldItemSlot(4);
-                    cel.sendMessage("§7Twój ekwipunek zostal wyczyszczony przez gracza §9" + sender.getName());
+                    cel.sendMessage("§7Twój ekwipunek został wyczyszczony przez gracza §9" + sender.getName());
                     sender.sendMessage("§7Poprawne wyczyszczono graczu §9" + cel.getName() + " §7ekwipunek");
+                    if (plugin.getConfig().getBoolean("logs")) {
+                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wyczyszczyl ekwipunek graczu " + cel.getName());
+                    }
                 } else {
                     sender.sendMessage("§7Poprawne użycie: §9/clear [gracz]");
                 }
