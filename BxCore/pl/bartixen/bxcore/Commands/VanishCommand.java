@@ -23,7 +23,6 @@ public class VanishCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)) {
             if (args.length == 1) {
                 Player cel = Bukkit.getPlayerExact(args[0]);
                 if (cel == null) {
@@ -36,7 +35,7 @@ public class VanishCommand implements CommandExecutor {
                         players.showPlayer(cel);
                     }
                     cel.sendMessage("§7Jesteś teraz §cwidoczny §7przez §9" + sender.getName());
-                    sender.sendMessage("§7Gracz §9" + cel.getName() + "§7jest teraz §cwidoczny");
+                    sender.sendMessage("§7Gracz §9" + cel.getName() + " §7jest teraz §cwidoczny");
                     if (plugin.getConfig().getBoolean("logs")) {
                         plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl vanish dla " + cel.getName());
                     }
@@ -48,43 +47,43 @@ public class VanishCommand implements CommandExecutor {
                         }
                     }
                     cel.sendMessage("§7Jesteś teraz §aniewidoczny §7przez §9" + sender.getName());
-                    sender.sendMessage("§7Gracz §9" + cel.getName() + "§7jest teraz §aniewidoczny");
+                    sender.sendMessage("§7Gracz §9" + cel.getName() + " §7jest teraz §aniewidoczny");
                         if (plugin.getConfig().getBoolean("logs")) {
                             plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl vanish dla " + cel.getName());
                         }
                 }
             } else {
-                sender.sendMessage("§7Poprawne użycie: §9/v [gracz]");
-                return false;
-            }
-        } else {
-            Player p = (Player) sender;
-            if (p.hasPermission("bxcore.commands.vanish") || p.isOp()) {
-                if (plugin.invisible.contains(p)) {
-                    plugin.invisible.remove(p);
-                    for (Player players : Bukkit.getOnlinePlayers()) {
-                        players.showPlayer(p);
-                    }
-                    p.sendMessage("§7Jesteś teraz §cwidoczny");
-                    if (plugin.getConfig().getBoolean("logs")) {
-                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl vanish");
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage("§7Poprawne użycie: §9/v [gracz]");
+                    return false;
+                }
+                Player p = (Player) sender;
+                if (p.hasPermission("bxcore.commands.vanish") || p.isOp()) {
+                    if (plugin.invisible.contains(p)) {
+                        plugin.invisible.remove(p);
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            players.showPlayer(p);
+                        }
+                        p.sendMessage("§7Jesteś teraz §cwidoczny");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl vanish");
+                        }
+                    } else {
+                        plugin.invisible.add(p);
+                        for (Player players : Bukkit.getOnlinePlayers()) {
+                            if (!(players.hasPermission("bxcore.commands.vanish"))) {
+                                players.hidePlayer(p);
+                            }
+                        }
+                        p.sendMessage("§7Jesteś teraz §aniewidoczny");
+                        if (plugin.getConfig().getBoolean("logs")) {
+                            plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl vanish");
+                        }
+                        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aJestes obecnie niewidoczny"));
                     }
                 } else {
-                    plugin.invisible.add(p);
-                    for (Player players : Bukkit.getOnlinePlayers()) {
-                        if (!(players.hasPermission("bxcore.commands.vanish"))) {
-                            players.hidePlayer(p);
-                        }
-                    }
-                    p.sendMessage("§7Jesteś teraz §aniewidoczny");
-                    if (plugin.getConfig().getBoolean("logs")) {
-                        plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wlaczyl vanish");
-                    }
-                    p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aJestes obecnie niewidoczny"));
+                    p.sendMessage("§7Brak permisji: §9bxcore.commands.vanish");
                 }
-            } else {
-                p.sendMessage("§7Brak permisji: §9bxcore.commands.vanish");
-            }
         }
 
         return false;

@@ -137,6 +137,9 @@ public class PomocCommand implements CommandExecutor {
         if (sender.hasPermission("bxcore.commands.restart") || sender.isOp()) {
             sender.sendMessage("§7- §9/wylaczenie §7| §fWylacza serwer w ciagu 60s");
         }
+        if (sender.hasPermission("bxcore.commands.perm") || sender.isOp()) {
+            sender.sendMessage("§7- §9/perm §7| §fZażądanie permisjami");
+        }
         sender.sendMessage("§7");
         return false;
     }

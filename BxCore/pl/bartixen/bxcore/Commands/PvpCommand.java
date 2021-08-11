@@ -106,7 +106,7 @@ public class PvpCommand implements CommandExecutor, Listener {
                                 plugin.getLogger().log(Level.INFO, "Gracz " + sender.getName() + " wylaczyl PVP dla " + cel.getName());
                             }
                         } else {
-                            userd.getData().set(sender.getName() + ".pvp", true);
+                            userd.getData().set(cel.getName() + ".pvp", true);
                             try {
                                 userd.saveData();
                             } catch (IOException e) {
@@ -162,4 +162,5 @@ public class PvpCommand implements CommandExecutor, Listener {
             userd.saveData();
         }
     }
+
 }

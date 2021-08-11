@@ -75,9 +75,8 @@ public class BanCommand implements CommandExecutor {
                     UUID uuid = cel.getUniqueId();
                     InetSocketAddress IPAdressPlayer = cel.getAddress();
                     String ip = IPAdressPlayer.toString();
-                    String name = ip;
-                    int entityTypeLenght = name.length() - 6;
-                    String ipban = name.substring(0, entityTypeLenght);
+                    int entityTypeLenght = ip.length() - 6;
+                    String ipban = ip.substring(0, entityTypeLenght);
                     band.getData().set(cel.getName() + ".permban.adminstrator", sender.getName());
                     band.getData().set(cel.getName() + ".permban.powod", msg);
                     band.getData().set(cel.getName() + ".permban.nick", cel.getName());

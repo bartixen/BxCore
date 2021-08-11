@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import pl.bartixen.bxcore.Data.*;
 import pl.bartixen.bxcore.Main;
+import pl.bartixen.bxcore.Permission.PermissionConfig;
 
 public class BxCoreCommand implements CommandExecutor {
 
@@ -18,6 +19,7 @@ public class BxCoreCommand implements CommandExecutor {
     WhitelistDataManager wld;
     RtpDataManager rtpd;
     AntyXrayDataManager antyd;
+    PermissionConfig permd;
 
     public BxCoreCommand(Main m) {
         plugin = m;
@@ -31,6 +33,7 @@ public class BxCoreCommand implements CommandExecutor {
         wld = WhitelistDataManager.getInstance();
         rtpd = RtpDataManager.getInstance();
         antyd = AntyXrayDataManager.getInstance();
+        permd = PermissionConfig.getInstance();
     }
 
     @Override
@@ -59,6 +62,8 @@ public class BxCoreCommand implements CommandExecutor {
                     sender.sendMessage("§7Pomyślnie przeładowano §9RTPDATAMENAGER");
                     antyd.reloadData();
                     sender.sendMessage("§7Pomyślnie przeładowano §9ANTYXRAYDATAMENAGER");
+                    permd.reloadData();
+                    sender.sendMessage("§7Pomyślnie przeładowano §9PERMISSIONCONFIG");
                     sender.sendMessage("§8 • — • — • — • ");
                 } else {
                     WiadomoscPlugin(sender, version);

@@ -7,6 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pl.bartixen.bxcore.Data.UserDataManager;
 import pl.bartixen.bxcore.Main;
+import pl.bartixen.bxcore.Permission.PermissionConfig;
+
+import java.util.UUID;
 
 public class ChatFormat implements Listener {
 
@@ -14,9 +17,12 @@ public class ChatFormat implements Listener {
 
     static UserDataManager userd;
 
+    PermissionConfig permd;
+
     public ChatFormat(Main m) {
         plugin = m;
         userd = UserDataManager.getInstance();
+        permd = PermissionConfig.getInstance();
     }
 
     @EventHandler
@@ -24,19 +30,14 @@ public class ChatFormat implements Listener {
         String original = e.getMessage();
         String formatted = ChatColor.translateAlternateColorCodes('&', original);
         Player p = e.getPlayer();
+        UUID uuid = p.getUniqueId();
 
-        if (p.hasPermission("wlasciciel")) {
-            e.setFormat("§8§l[§c§l%s§8§l] §7-> §c" + formatted);
-        } else {
-            if (p.hasPermission("admin")) {
-                e.setFormat("§8§l[§b§l%s§8§l] §7-> §b" + formatted);
-            } else {
-                if (p.hasPermission("pomocnik")) {
-                    e.setFormat("§8§l[§d§l%s§8§l] §7-> §d" + formatted);
-                } else {
-                    e.setFormat("§8§l[§9§l%s§8§l] §7-> §f%s");
-                }
-            }
+        String rank = permd.getData().getString("users." + uuid);
+
+        if (plugin.getConfig().getString("chat.group-formats." + rank) != null) {
+            String format = plugin.getConfig().getString("chat.group-formats." + rank).replace("%nick%", p.getName()).replace("%message%", original).replace("%formatted%", formatted).replace("&", "§");
+            e.setFormat(format);
+
         }
     }
 }

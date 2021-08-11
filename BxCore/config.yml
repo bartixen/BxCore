@@ -4,6 +4,24 @@ key: o4398fJHBDsgjasdfbgLKHFASdfv9qa32bsd
 #Nazwa serwera | bedzie ona wyswietlana w wielu miejscach
 nazwa: MC.SERWER.PL
 
+#Napisy tabu | PAMIETAJ ABY NASTEPNA LINIE ROBIC "\n"
+#Akceptujemy:
+# - "%name%" | Wyswietla nazwe serwera
+# - "%ping% | Wyswietla ping gracza
+# - "%tps% | Wyswietla tps serwera
+header: "&7\n&f&lWitaj na serwerze\n&7     &a&l%name%     &7\n&7"
+footer: "&7\n&f     &f&lPing&7&l: &9&l%ping% &8| &f&lTPS&7: &9&l%tps%     &f\n&7"
+
+#Format czatu
+#Akceptujemy:
+# - "%nick%" | Wyswietla nazwe gracza
+# - "%message%" | Wyswietla wiadomosc
+# - "%formatted%" | Wyswietla wiadomosc z kolorami
+chat:
+  group-formats:
+    gracz: '&8[&f%nick%&8] &7-> &f%message%'
+    admin: '&8[&cADMIN&8] &8[&c%nick%&8] &7-> &c%formatted%'
+
 #Motd wyswietlane na lisce serwerow
 motd:
   #Pierwsza linia motd
@@ -12,7 +30,7 @@ motd:
   linia-2: '&7'
   #Ta opcja zawsze dodaje jeden do maksymalnej liczby graczy | 23/24
   max-dodac-jeden: true
-  #Ustalasz maksymalna liczbe graczy | To zadziala tylko wtedy kiedy wylaczysz (max-dodac-jeden) i (maska)
+  #Ustalasz maksymalna liczbe graczy | To zadziala tylko wtedy kiedy wylaczysz (max-dodac-jeden)
   max: 1000
 
 #Ustalasz kordynaty spawnu
