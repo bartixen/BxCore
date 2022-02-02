@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="BxCore">
-    <output-path>$USER_HOME$/Desktop/Serwer/plugins</output-path>
-    <root id="archive" name="BxCore.jar">
-      <element id="module-output" name="BxCore" />
-    </root>
-  </artifact>
-</component>
