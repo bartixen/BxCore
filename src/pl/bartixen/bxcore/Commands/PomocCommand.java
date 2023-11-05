@@ -32,11 +32,12 @@ public class PomocCommand implements CommandExecutor {
         sender.sendMessage("§7- §9/home §7| §fTeleportuje ciebie do domu");
         sender.sendMessage("§7- §9/msg §7| §fWysyla prywatna wiadomość do gracza");
         sender.sendMessage("§7- §9/staty §7| §fWyświetla statystyki");
+        sender.sendMessage("§7- §9/nagrody §7| §fWyświetla nagrody");
+        sender.sendMessage("§7- §9/skiny §7| §fSklep z Skinami");
         sender.sendMessage("§7- §9/pvp §7| §fWlacza/Wylacza pvp gracza");
         sender.sendMessage("§7- §9/team , /teamy §7| §fDodaje ciebie to wybranego teamu");
         if (sender.hasPermission("bxcore.commands.alert") || sender.isOp()) {
             sender.sendMessage("§7- §9/alert, /bc §7| §fWysyla do wszystkich alert");
-            sender.sendMessage("§7- §9/bossbar §7| §fWysyla do wszystkich bossbar z informacja");
         }
         if (sender.hasPermission("bxcore.commands.back") || sender.isOp()) {
             sender.sendMessage("§7- §9/back §7| §fTeleportuje ciebie do ostatniego zapisanego miejsca");
@@ -138,7 +139,7 @@ public class PomocCommand implements CommandExecutor {
             sender.sendMessage("§7- §9/wylaczenie §7| §fWylacza serwer w ciagu 60s");
         }
         if (sender.hasPermission("bxcore.commands.perm") || sender.isOp()) {
-            sender.sendMessage("§7- §9/perm §7| §fZażądanie permisjami");
+            sender.sendMessage("§7- §9/perm §7| §fZarzadzanie permisjami");
         }
         sender.sendMessage("§7");
         return false;

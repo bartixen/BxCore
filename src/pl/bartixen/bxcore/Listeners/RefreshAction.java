@@ -3,12 +3,10 @@ package pl.bartixen.bxcore.Listeners;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.bartixen.bxcore.Main;
-import pl.bartixen.bxcore.Permission.PermAddition;
 import pl.bartixen.bxcore.Permission.PermissionConfig;
 
 import java.util.ArrayList;
@@ -32,8 +30,8 @@ public class RefreshAction extends BukkitRunnable {
                 players.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aJestes obecnie niewidoczny"));
             }
             TabList.RefreshPlayerName(players, TabList.TeamAction.CREATE);
-            String header = plugin.getConfig().getString("header").replace("&", "§").replace("%ping%", getPing(players) + "").replace("%tps%", getTps()).replace("%name%", plugin.getConfig().getString("nazwa"));
-            String footer = plugin.getConfig().getString("footer").replace("&", "§").replace("%ping%", getPing(players) + "").replace("%tps%", getTps()).replace("%name%", plugin.getConfig().getString("nazwa"));
+            String header = plugin.getConfig().getString("header").replace("&", "§").replace("%ping%", getPing(players) + "").replace("%tps%", getTps()).replace("%name%", plugin.getConfig().getString("name"));
+            String footer = plugin.getConfig().getString("footer").replace("&", "§").replace("%ping%", getPing(players) + "").replace("%tps%", getTps()).replace("%name%", plugin.getConfig().getString("name"));
             players.setPlayerListHeaderFooter(header, footer);
             refreshPermission(players);
         }

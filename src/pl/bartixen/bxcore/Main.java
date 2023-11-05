@@ -18,13 +18,17 @@ import pl.bartixen.bxcore.Msg.Socialspy;
 import pl.bartixen.bxcore.Permission.PermAddition;
 import pl.bartixen.bxcore.Permission.PermCommand;
 import pl.bartixen.bxcore.Permission.PermissionConfig;
+import pl.bartixen.bxcore.Reward.RewardCommand;
+import pl.bartixen.bxcore.Reward.RewardListeners;
 import pl.bartixen.bxcore.Staty.StatyCommand;
 import pl.bartixen.bxcore.Staty.StatyListeners;
 import pl.bartixen.bxcore.Staty.StatyTime;
+import pl.bartixen.bxcore.Staty.StatyTop;
 import pl.bartixen.bxcore.Tpa.TpAccept;
 import pl.bartixen.bxcore.Tpa.TpDeny;
 import pl.bartixen.bxcore.Tpa.TpSystem;
 import pl.bartixen.bxcore.Tpa.Tpa;
+import pl.bartixen.bxteam.Data.DataManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +42,7 @@ public class Main extends JavaPlugin implements Listener {
     public static ArrayList<Player> invisible = new ArrayList<>();
 
     public String version = getDescription().getVersion();
-    public String serwer = getConfig().getString("nazwa");
+    public String server = getConfig().getString("name");
 
     HomeDataManager hd;
     MsgDataManager msgd;
@@ -51,6 +55,8 @@ public class Main extends JavaPlugin implements Listener {
     AntyLogutDataManager antylogutd;
     PermissionConfig permd;
 
+    DataManager teamd;
+
     public Main() {
         hd = HomeDataManager.getInstance();
         msgd = MsgDataManager.getInstance();
@@ -62,137 +68,138 @@ public class Main extends JavaPlugin implements Listener {
         antyd = AntyXrayDataManager.getInstance();
         antylogutd = AntyLogutDataManager.getInstance();
         permd = PermissionConfig.getInstance();
+        teamd = DataManager.getInstance();
     }
 
     @Override
     public void onEnable() {
         if ((!getDescription().getName().contains("BxCore")) || (!getDescription().getAuthors().contains("Bartixen"))) {
-            getLogger().log(Level.WARNING, "§8[========== §9BxCore §8==========]");
-            getLogger().log(Level.WARNING, "§cPlugin zostal wylaczony z powodu edytowania pliku §eplugin.yml");
-            getLogger().log(Level.WARNING, "§8[========== §9BxCore §8==========]");
+            getLogger().log(Level.WARNING, "[========== BxCore ==========]");
+            getLogger().log(Level.WARNING, "The plugin has been disabled due to file editing plugin.yml");
+            getLogger().log(Level.WARNING, "[========== BxCore ==========]");
             Bukkit.getServer().getPluginManager().disablePlugin(this);
         } else {
-            getLogger().log(Level.INFO, "§8[========== §9BxCore §8==========]");
-            getLogger().log(Level.INFO, "§fVersion: §b{0}", getDescription().getVersion());
-            getLogger().log(Level.INFO, "§fAuthor: §bBartixen");
-            getLogger().log(Level.INFO, "§fWebsite: §bhttps://bartixen.pl");
-            getLogger().log(Level.INFO, "§8[========== §9BxCore §8==========]");
+            getLogger().log(Level.INFO, "[========== BxCore ==========]");
+            getLogger().log(Level.INFO, "Version: {0}", getDescription().getVersion());
+            getLogger().log(Level.INFO, "Author: Bartixen");
+            getLogger().log(Level.INFO, "Website: https://bartixen.pl");
+            getLogger().log(Level.INFO, "[========== BxCore ==========]");
 
-            getLogger().log(Level.INFO, "§fChecking:");
+            getLogger().log(Level.INFO, "Checking:");
 
             getConfig().options().copyDefaults(true);
             saveConfig();
 
             try {
                 hd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fHomeDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- HomeDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fHomeDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- HomeDataManager | ERROR");
             }
 
             try {
                 msgd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fMsgDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- §fMsgDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fMsgDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- §fMsgDataManager | ERROR");
             }
 
             try {
                 userd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fUserDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- UserDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fUserDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- UserDataManager | ERROR");
             }
 
             try {
                 statyd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fStatyDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- StatyDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fStatyDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- StatyDataManager | ERROR");
             }
 
             try {
                 antyd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fAntyXrayDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- AntyXrayDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fAntyXrayDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- AntyXrayDataManager | ERROR");
             }
 
             try {
                 band.setup(this);
-                getLogger().log(Level.INFO, "§7- §fBanDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- BanDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fBanDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- BanDataManager | ERROR");
             }
 
             try {
                 wld.setup(this);
-                getLogger().log(Level.INFO, "§7- §fWhitelistDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- WhitelistDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fWhitelistDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- WhitelistDataManager | ERROR");
             }
 
             try {
                 antylogutd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fAntyXrayDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- AntyXrayDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fAntyXrayDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- AntyXrayDataManager | ERROR");
             }
 
             try {
                 rtpd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fRtpDataManager §7| §aOK");
+                getLogger().log(Level.INFO, "- RtpDataManager | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fRtpDataManager §7| §cERROR");
+                getLogger().log(Level.INFO, "- RtpDataManager | ERROR");
             }
 
             try {
                 permd.setup(this);
-                getLogger().log(Level.INFO, "§7- §fPermissionConfig §7| §aOK");
+                getLogger().log(Level.INFO, "- PermissionConfig | OK");
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger().log(Level.INFO, "§7- §fPermissionConfig §7| §cERROR");
+                getLogger().log(Level.INFO, "- PermissionConfig | ERROR");
             }
 
-            getLogger().log(Level.INFO, "§fServer status:");
+            getLogger().log(Level.INFO, "Server status:");
 
             Runtime runtime = Runtime.getRuntime();
-            String name = getConfig().getString("nazwa");
             String version = getServer().getVersion();
+            String server_name = getConfig().getString("name");
             int ram = (int) (runtime.totalMemory() / 1048576L);
             int port = getServer().getPort();
             String ip = getServer().getIp();
             int viewdistance = getServer().getViewDistance();
             String onlinemode = String.valueOf(getServer().getOnlineMode());
 
-            getLogger().log(Level.INFO, "§7- §fName §7| §9" + name);
+            getLogger().log(Level.INFO, "- Name | " + server_name);
 
-            getLogger().log(Level.INFO, "§7- §fVersion §7| §9" + version);
+            getLogger().log(Level.INFO, "- Version | " + version);
 
-            getLogger().log(Level.INFO, "§7- §fRam §7| §9" + ram + " MB");
+            getLogger().log(Level.INFO, "- Ram | " + ram + " MB");
 
-            getLogger().log(Level.INFO, "§7- §fPort §7| §9" + port);
+            getLogger().log(Level.INFO, "- Port | " + port);
 
-            getLogger().log(Level.INFO, "§7- §fIP §7| §9" + ip);
+            getLogger().log(Level.INFO, "- IP | " + ip);
 
-            getLogger().log(Level.INFO, "§7- §fView Distance §7| §9" + viewdistance);
+            getLogger().log(Level.INFO, "- View Distance | " + viewdistance);
 
-            getLogger().log(Level.INFO, "§7- §fOnline Mode §7| §9" + onlinemode);
+            getLogger().log(Level.INFO, "- Online Mode | " + onlinemode);
 
-            String autodziala = getConfig().getString("automessage.dziala");
-            int autoczas = getConfig().getInt("automessage.czas");
+            String autoworks = getConfig().getString("automessage.works");
+            int autotime = getConfig().getInt("automessage.time");
 
-            if (autodziala.equals("true")) {
-                new AutoMessage(this).runTaskTimer(this, 0, autoczas * 20);
+            if (autoworks.equals("true")) {
+                new AutoMessage(this).runTaskTimer(this, 0, autotime * 20);
             }
 
             main = this;
@@ -217,7 +224,10 @@ public class Main extends JavaPlugin implements Listener {
             }
 
             new StatyTime(this).runTaskTimer(this, 0, 20 * 60);
+            new StatyTop(this).runTaskTimer(this, 0, 10 * 60 * 20);
             new StatyListeners(this);
+            new RewardListeners(this);
+            new RewardCommand(this);
             new MuteTimeChecker(this);
             new BanCommand(this);
             new BanIPCommand(this);
@@ -279,6 +289,7 @@ public class Main extends JavaPlugin implements Listener {
             new HomeCommand(this);
             new Ignore(this);
             new RestartCommand(this);
+            new LogBlockCommand(this);
             new Msg(this);
             new Replay(this);
             new Socialspy(this);
@@ -299,6 +310,7 @@ public class Main extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new VanishEvents(this), this);
             getServer().getPluginManager().registerEvents(new HomeListener(this), this);
             getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+            getServer().getPluginManager().registerEvents(new Blood(this), this);
             getServer().getPluginManager().registerEvents(new PlayerData(this), this);
             getServer().getPluginManager().registerEvents(new StatyListeners(this), this);
             getServer().getPluginManager().registerEvents(new TabList(this), this);
@@ -310,8 +322,10 @@ public class Main extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new PvpCommand(this), this);
             getServer().getPluginManager().registerEvents(new LvLDragon(this), this);
             getServer().getPluginManager().registerEvents(new AntyLogut(this), this);
+            getServer().getPluginManager().registerEvents(new AntyAfk(this), this);
             getServer().getPluginManager().registerEvents(new PvpCommand(this), this);
             getServer().getPluginManager().registerEvents(new PermAddition(this), this);
+            getServer().getPluginManager().registerEvents(new RewardListeners(this), this);
             new RefreshAction(this).runTaskTimer(this, 0, 20 * 2);
             new ClearXray(this).runTaskTimer(this, 0, 3600 * 20);
             new AntyLogut(this).runTaskTimer(this, 0, 20);
@@ -330,6 +344,7 @@ public class Main extends JavaPlugin implements Listener {
             }
 
         }
+
     }
 
     public static Main getMain() {

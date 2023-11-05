@@ -48,7 +48,7 @@ public class BanIPCommand implements CommandExecutor {
                 msg = sb.toString().replace("&", "§");
                 if (((band.getData().getString(args[0] + ".permban")) == null) && ((band.getData().getString(args[0] + ".tempban")) == null) && ((band.getData().getString(args[0] + ".banip")) == null) && (!(banip.contains(args[0])))) {
                     if (!(args.length > 1)) { msg = "brak"; }
-                    String nazwa = plugin.getConfig().getString("nazwa");
+                    String name1 = plugin.getConfig().getString("name");
                     if (userd.getData().getString(args[0]) != null) {
                         String ip = userd.getData().getString(args[0] + ".last_ip");
                         band.getData().set(args[0] + ".banip.adminstrator", sender.getName());
@@ -71,7 +71,7 @@ public class BanIPCommand implements CommandExecutor {
                         }
                         Player cel = Bukkit.getPlayerExact(args[0]);
                         if (cel != null) {
-                            cel.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+                            cel.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + name1 + " §8• — • — • — •\n");
                         }
                         if (plugin.getConfig().getBoolean("logs")) {
                             plugin.getLogger().log(Level.INFO, "Gracz " + args[0] + " zostal dodany do blacklist przez §9" + sender.getName() + " z powodem " + msg);
@@ -97,7 +97,7 @@ public class BanIPCommand implements CommandExecutor {
                             p.sendMessage(ip);
 
                             if (ipban.equals(ip)) {
-                                p.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + p.getName() + "\n\n§cNa ten adres IP §8(§e" + ipban + "§8) §czostała nadana blokada\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+                                p.kickPlayer("\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + p.getName() + "\n\n§cNa ten adres IP §8(§e" + ipban + "§8) §czostała nadana blokada\n\n§8• — • — • — • §f§l" + name1 + " §8• — • — • — •\n");
                             }
                         }
                         sender.sendMessage("§7Adres IP §9" + ip + " §7zostal pomyślnie dodany do blacklist");

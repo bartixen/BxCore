@@ -30,13 +30,13 @@ public class KickCommand implements CommandExecutor {
                 }
                 msg = sb.toString().replace("&", "§");
                 Player cel = Bukkit.getPlayerExact(args[0]);
-                String nazwa = plugin.getConfig().getString("nazwa");
+                String name = plugin.getConfig().getString("name");
                 if (cel == null) {
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7jest §coffline");
                     return false;
                 }
                 if (!(args.length > 1)) { msg = "brak"; }
-                cel.kickPlayer("\n§8• — • — • — • §9§lKICK §8• — • — • — •\n\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+                cel.kickPlayer("\n§8• — • — • — • §9§lKICK §8• — • — • — •\n\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + name + " §8• — • — • — •\n");
                 sender.sendMessage("§7Gracz §9" + cel.getName() + " §7zostal pomyślnie wyrzucony");
                 for (Player players : Bukkit.getOnlinePlayers()) {
                     if (players.hasPermission("bxcore.commands.kick") || players.isOp()) {

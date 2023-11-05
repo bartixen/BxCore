@@ -20,10 +20,10 @@ public class CommandBlocker implements Listener {
     public void onPlayerCommand(PlayerCommandPreprocessEvent e) {
         Player p = e.getPlayer();
         if (!(p.hasPermission("*") || p.isOp())) {
-            List<String> wiadomosci = plugin.getConfig().getStringList("commandblock");
-            String polecenie = e.getMessage();
-            for (String blacklist : wiadomosci) {
-                if ((polecenie.startsWith("/" + blacklist.toLowerCase() + " ")) || (polecenie.equals("/" + blacklist.toLowerCase()))) {
+            List<String> messages = plugin.getConfig().getStringList("commandblock");
+            String directing = e.getMessage();
+            for (String blacklist : messages) {
+                if ((directing.startsWith("/" + blacklist.toLowerCase() + " ")) || (directing.equals("/" + blacklist.toLowerCase()))) {
                     e.setCancelled(true);
                     p.sendMessage("§7Komenda nieznana. Sprawdź §9/pomoc");
                     break;

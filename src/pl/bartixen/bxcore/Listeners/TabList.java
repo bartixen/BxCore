@@ -10,8 +10,8 @@ import org.bukkit.scoreboard.Team;
 import pl.bartixen.bxcore.Data.UserDataManager;
 import pl.bartixen.bxcore.Main;
 import pl.bartixen.bxcore.Permission.PermissionConfig;
+import pl.bartixen.bxteam.Data.DataManager;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class TabList implements Listener {
@@ -20,15 +20,18 @@ public class TabList implements Listener {
 
     static UserDataManager userd;
 
+    static DataManager teamd;
+
     static PermissionConfig permd;
 
     public TabList(Main m) {
         plugin = m;
         userd = UserDataManager.getInstance();
         permd = PermissionConfig.getInstance();
+        teamd = DataManager.getInstance();
     }
 
-    //W RefreshAction.java jest kod odswiezania tabu
+    //In RefreshAction.java there is a taboo refresh code
 
     @EventHandler
     public void Tablist(PlayerJoinEvent e) {
@@ -54,6 +57,16 @@ public class TabList implements Listener {
 
         if (plugin.invisible.contains(p)) {
             suffix = suffix + " §8[§a✪§8]";
+        }
+
+        if (teamd.getData().getString(String.valueOf(p.getUniqueId()) + ".player") != null) {
+            String team_player = teamd.getData().getString((String.valueOf(p.getUniqueId()) + ".player"));
+            suffix = suffix + " §8(§d" + team_player.toUpperCase() + "§8)";
+        }
+
+        if (teamd.getData().getString(String.valueOf(p.getUniqueId()) + ".team_leader") != null) {
+            String team_player = teamd.getData().getString((String.valueOf(p.getUniqueId()) + ".team_leader"));
+            suffix = suffix + " §8(§d" + team_player.toUpperCase() + "§8)";
         }
 
         if (p.getScoreboard() == null) {

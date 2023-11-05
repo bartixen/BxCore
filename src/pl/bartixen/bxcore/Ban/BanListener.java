@@ -26,12 +26,12 @@ public class BanListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPreLogin(AsyncPlayerPreLoginEvent e) throws IOException {
-        String nazwa = plugin.getConfig().getString("nazwa");
+        String name = plugin.getConfig().getString("name");
 
         if ((band.getData().getString(e.getName() + ".permban")) != null) {
             String msg = band.getData().getString(e.getName() + ".permban.powod");
             String admin = band.getData().getString(e.getName() + ".permban.adminstrator");
-            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + e.getName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + admin + "\n§7Wygasa: §9nigdy\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + e.getName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + admin + "\n§7Wygasa: §9nigdy\n\n§8• — • — • — • §f§l" + name + " §8• — • — • — •\n");
         }
 
         if ((band.getData().getString(e.getName() + ".tempban")) != null) {
@@ -39,14 +39,14 @@ public class BanListener implements Listener {
                 String msg = band.getData().getString(e.getName() + ".tempban.powod");
                 String admin = band.getData().getString(e.getName() + ".tempban.adminstrator");
                 String czas = BanTimeChecker.getTime();
-                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + e.getName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + admin + "\n§7Wygasa: §9" + czas + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + e.getName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + admin + "\n§7Wygasa: §9" + czas + "\n\n§8• — • — • — • §f§l" + name + " §8• — • — • — •\n");
             }
         }
 
         if ((band.getData().getString(e.getName() + ".banip")) != null) {
             String msg = band.getData().getString(e.getName() + ".banip.powod");
             String admin = band.getData().getString(e.getName() + ".banip.adminstrator");
-            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + e.getName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + admin + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "\n§8• — • — • — • §9§lBLACKLIST §8• — • — • — •\n\n§7Nick: §9" + e.getName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + admin + "\n\n§8• — • — • — • §f§l" + name + " §8• — • — • — •\n");
         }
     }
 

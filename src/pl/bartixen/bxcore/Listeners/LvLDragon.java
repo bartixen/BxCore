@@ -33,7 +33,7 @@ public class LvLDragon implements Listener {
 
     @EventHandler
     public void DragonSpawn(EntitySpawnEvent event) throws IOException {
-        if (plugin.getConfig().getBoolean("end.dragon-lvl.dzialanie")) {
+        if (plugin.getConfig().getBoolean("end.dragon-lvl.works")) {
             if (event.getEntity() instanceof org.bukkit.entity.EnderDragon) {
                 Entity dragon = event.getEntity();
                 if (plugin.getConfig().getString("end.dragon-lvl.lvl") == null) {

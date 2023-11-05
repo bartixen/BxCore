@@ -36,7 +36,7 @@ public class MsgDataManager {
                 path.mkdirs();
                 msgfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §ehome.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file msg.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(msgfile);
@@ -50,7 +50,7 @@ public class MsgDataManager {
         try {
             data.save(msgfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §ehome.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file msg.yml");
         }
     }
 

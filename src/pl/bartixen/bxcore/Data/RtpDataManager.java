@@ -36,7 +36,7 @@ public class RtpDataManager {
                 path.mkdirs();
                 rtpfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §ertp.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file rtp.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(rtpfile);
@@ -50,7 +50,7 @@ public class RtpDataManager {
         try {
             data.save(rtpfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §ertp.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file rtp.yml");
         }
     }
 

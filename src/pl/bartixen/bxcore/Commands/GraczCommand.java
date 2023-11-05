@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import pl.bartixen.bxauth.Data.DataManager;
+import pl.bartixen.bxauth.Data.DataPlayerManager;
 import pl.bartixen.bxcore.Ban.BanIPCommand;
 import pl.bartixen.bxcore.Ban.BanTimeChecker;
 import pl.bartixen.bxcore.Ban.MuteTimeChecker;
@@ -13,6 +14,7 @@ import pl.bartixen.bxcore.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public class GraczCommand implements CommandExecutor {
@@ -20,7 +22,9 @@ public class GraczCommand implements CommandExecutor {
     Main plugin;
     static BanDataManager band;
     static UserDataManager userd;
-    static DataManager data;
+    static DataPlayerManager data;
+
+    static DataManager data1;
 
     public ArrayList<String> kontaregister = new ArrayList<>();
 
@@ -30,7 +34,8 @@ public class GraczCommand implements CommandExecutor {
         m.getCommand("player").setExecutor(this);
         band = BanDataManager.getInstance();
         userd = UserDataManager.getInstance();
-        data = DataManager.getInstance();
+        data = DataPlayerManager.getInstance();
+        data1 = DataManager.getInstance();
     }
 
     @Override
@@ -74,31 +79,31 @@ public class GraczCommand implements CommandExecutor {
                     int entityTypeLenght1 = name.length() - 4;
                     lastip = name1.substring(0, entityTypeLenght1) + "****";
                     uuid = userd.getData().getString(args[0] + ".uuid");
-                    world = data.getData().getString(uuid + ".lastlocation.world");
-                    x = data.getData().getInt(uuid + ".lastlocation.x");
-                    y = data.getData().getInt(uuid + ".lastlocation.y");
-                    z = data.getData().getInt(uuid + ".lastlocation.z");
-                    yaw = data.getData().getInt(uuid + ".lastlocation.yaw");
-                    pitch = data.getData().getInt(uuid + ".lastlocation.pitch");
-                    if (data.getData().getBoolean(uuid + ".register")) {
+                    world = data.getData(UUID.fromString(uuid)).getString("lastlocation.world");
+                    x = data.getData(UUID.fromString(uuid)).getInt("lastlocation.x");
+                    y = data.getData(UUID.fromString(uuid)).getInt("lastlocation.y");
+                    z = data.getData(UUID.fromString(uuid)).getInt("lastlocation.z");
+                    yaw = data.getData(UUID.fromString(uuid)).getInt("lastlocation.yaw");
+                    pitch = data.getData(UUID.fromString(uuid)).getInt("lastlocation.pitch");
+                    if (data.getData(UUID.fromString(uuid)).getBoolean("register")) {
                         register = "zarejestrowany";
                     } else {
                         register = "nie zarejestrowany";
                     }
-                    if ((data.getData().getString(uuid + ".data_register")) != null) {
-                        dataregister = data.getData().getString(uuid + ".data_register");
+                    if ((data.getData(UUID.fromString(uuid)).getString("data_register")) != null) {
+                        dataregister = data.getData(UUID.fromString(uuid)).getString("data_register");
                     }
-                    timelogin = data.getData().getString(uuid + ".logintime");
-                    lastlogin = data.getData().getString(uuid + ".lastlogin");
-                    lastplay = data.getData().getString(uuid + ".lastplay");
-                    if ((data.getData().getString("sessions." + nick)) != null) {
+                    timelogin = data.getData(UUID.fromString(uuid)).getString("logintime");
+                    lastlogin = data.getData(UUID.fromString(uuid)).getString("lastlogin");
+                    lastplay = data.getData(UUID.fromString(uuid)).getString("lastplay");
+                    if ((data1.getData().getString("sessions." + nick)) != null) {
                         session = "aktywna";
                     } else {
                         session = "nieaktywna";
                     }
-                    if (((data.getData().getString(uuid + ".first_ip").equals((data.getData().getString(uuid + ".last_ip")))))) {
-                        String ip = (data.getData().getString(uuid + ".first_ip")).replace("/", "").replace(".", "");
-                        if (data.getData().getBoolean("useripregister." + ip + ".multikonta")) {
+                    if (((data.getData(UUID.fromString(uuid)).getString("first_ip").equals((data.getData(UUID.fromString(uuid)).getString("last_ip")))))) {
+                        String ip = (data.getData(UUID.fromString(uuid)).getString("first_ip")).replace("/", "").replace(".", "");
+                        if (data1.getData().getBoolean("useripregister." + ip + ".multikonta")) {
                             multikonta = "może tworzyć multikonta";
                         } else {
                             multikonta = "nie może tworzyć multikont";
@@ -107,9 +112,9 @@ public class GraczCommand implements CommandExecutor {
                         multikonta = "gracz ma zmienne IP";
                     }
                     String ipdospr = name.replace("/", "").replace(".", "");
-                    kontaregister = new ArrayList<>(data.getData().getStringList("useripregister." + ipdospr + ".gracze"));
-                    pierwszewijsie = data.getData().getString(uuid + ".data_first_join");
-                    if (data.getData().getBoolean(uuid + ".premium")) {
+                    kontaregister = new ArrayList<>(data.getData(UUID.fromString(uuid)).getStringList("useripregister." + ipdospr + ".gracze"));
+                    pierwszewijsie = data.getData(UUID.fromString(uuid)).getString("data_first_join");
+                    if (data.getData(UUID.fromString(uuid)).getBoolean("premium")) {
                         premium = "platne";
                     } else {
                         premium = "darmowe";

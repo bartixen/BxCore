@@ -36,7 +36,7 @@ public class PermissionConfig {
                 path.mkdirs();
                 permissionfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §epermission.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file permission.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(permissionfile);
@@ -50,7 +50,7 @@ public class PermissionConfig {
         try {
             data.save(permissionfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §epermission.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file permission.yml");
         }
     }
 

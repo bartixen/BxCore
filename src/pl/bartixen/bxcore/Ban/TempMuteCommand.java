@@ -53,7 +53,7 @@ public class TempMuteCommand implements CommandExecutor {
                     Date now = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
                     Player cel = Bukkit.getPlayerExact(args[0]);
-                    String nazwa = plugin.getConfig().getString("nazwa");
+                    String name = plugin.getConfig().getString("name");
                     if (cel == null) {
                         band.getData().set(args[0] + ".tempmute.adminstrator", sender.getName());
                         band.getData().set(args[0] + ".tempmute.powod", msg);
@@ -93,7 +93,7 @@ public class TempMuteCommand implements CommandExecutor {
                     cel.sendMessage("§7Powód: §9" + msg);
                     cel.sendMessage("§7Administrator: §9" + sender.getName());
                     cel.sendMessage("");
-                    cel.sendMessage("§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •");
+                    cel.sendMessage("§8• — • — • — • §f§l" + name + " §8• — • — • — •");
                     cel.sendMessage("");
                     sender.sendMessage("§7Gracz §9" + cel.getName() + " §7został pomyślnie wyciszony");
                     for (Player players : Bukkit.getOnlinePlayers()) {

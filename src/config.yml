@@ -1,132 +1,142 @@
-#Klucz licencji do pluginu
+#Plugin license key
 key: o4398fJHBDsgjasdfbgLKHFASdfv9qa32bsd
 
-#Nazwa serwera | bedzie ona wyswietlana w wielu miejscach
-nazwa: MC.SERWER.PL
+#Server name | it will be displayed in many places
+name: MC.SERWER.PL
 
-#Napisy tabu | PAMIETAJ ABY NASTEPNA LINIE ROBIC "\n"
-#Akceptujemy:
-# - "%name%" | Wyswietla nazwe serwera
-# - "%ping% | Wyswietla ping gracza
-# - "%tps% | Wyswietla tps serwera
+#Taboo subtitles | REMEMBER TO MAKE THE NEXT LINE "\n"
+#We accept:
+# - "%name%" | Displays the server name
 header: "&7\n&f&lWitaj na serwerze\n&7     &a&l%name%     &7\n&7"
-footer: "&7\n&f     &f&lPing&7&l: &9&l%ping% &8| &f&lTPS&7: &9&l%tps%     &f\n&7"
+footer: "&7\n&ffooter&f\n&7"
 
-#Format czatu
-#Akceptujemy:
-# - "%nick%" | Wyswietla nazwe gracza
-# - "%message%" | Wyswietla wiadomosc
-# - "%formatted%" | Wyswietla wiadomosc z kolorami
+#Turns on the blood from the blows
+blood: true
+
+#AntyAfk
+antyafk:
+  #Should it be enabled?
+  works: true
+  #What should the delay be (in minutes)
+  time: 5
+
+#Chat format
+#We accept:
+# - "%nick%" | Displays the player's name
+# - "%message%" | Displays the message
+# - "%formatted%" | Displays the message with colors
+# - "%team%" | Displays the player's team
 chat:
   group-formats:
-    gracz: '&8[&f%nick%&8] &7-> &f%message%'
-    admin: '&8[&cADMIN&8] &8[&c%nick%&8] &7-> &c%formatted%'
+    gracz: '&c%team% &8[&f%nick%&8] &7-> &f%message%'
+    admin: '&c%team% &8[&cADMIN&8] &8[&c%nick%&8] &7-> &c%formatted%'
 
-#Motd wyswietlane na lisce serwerow
+#Motd displayed in the server list
 motd:
-  #Pierwsza linia motd
-  linia-1: '&f&lMC.&9&lSERWER&f&l.PL &8» &fSerwer minecraft'
-  #Druga linia motd
-  linia-2: '&7'
-  #Ta opcja zawsze dodaje jeden do maksymalnej liczby graczy | 23/24
-  max-dodac-jeden: true
-  #Ustalasz maksymalna liczbe graczy | To zadziala tylko wtedy kiedy wylaczysz (max-dodac-jeden)
+  #First line of motd
+  line-1: '&f&lMC.&9&lSERWER&f&l.PL &8» &fSerwer minecraft'
+  #Second line of motd
+  line-2: '&7'
+  #This option always adds one to the maximum number of players | 23/24
+  max-add-one: true
+  #You set the maximum number of players | This will only work if you turn off (max-add-one)
   max: 1000
 
-#Ustalasz kordynaty spawnu
+#You set spawn coordinates
 spawn:
-  #Kordynaty (X)
+  #Coordinates (X)
   x: 0
-  #Kordynaty (Y)
+  #Coordinates (Y)
   y: 100
-  #Kordynaty (Z)
+  #Coordinates (Z)
   z: 0
-  #Yaw | Jak nie wiesz jakie to ustaw na (90)
+  #Yaw | If you don't know what it is, set it to (90)
   yaw: 90
-  #Pitch | Jak nie wiesz jakie to ustaw na (90)
+  #Pitch | If you don't know what it is, set it to (90)
   pitch: 90
-  #Swiat
+  #World
   world: world
 
-#Jesli jest to wlaczone to na swiecie bedzie zawsze slonecznie
+#If this is turned on, it will always be sunny in the world
 weather: true
 
-#Ta opcja ustala swoja wiadomosc przy blendnej komedzie
+#This option sets its message in a brilliant comedy
 unknowncommand: true
 
-#Wlasne wiadomosci powitalne
+#Custom welcome messages
 joinquitmessage: true
 
-#Wysylanie logow do konsoli z kazdej komendy/eventu
+#Sending logs to the console from each command/event
 logs: true
 
-#Jak to jest wlaczone to wystarczy aby tylko jeden gracz sie przespal aby byl dzien
+#When this is turned on, only one player needs to sleep for it to be daytime
 oneplayersleep: true
 
-#Wyswiela powiadomienia kiedy gracz wykopie drogie przedmioty
+#Shows notifications when a player digs up expensive items
 antyxray: true
 
-#Tutaj ustalasz antyspam
+#You set anti-spam here
 antyspam:
-  #Czy ma byc wlaczony
-  dzialanie: true
-  #Jakie ma byc opoznienie (w sekundach)
-  czas: 3
-#Dodatkowa opcja wykopywania spawneru kilofem z silkiem
+  #Should it be enabled?
+  works: true
+  #What should the delay be (in seconds)
+  time: 3
+
+#Additional option to dig out the spawner with a pickaxe with silk
 silkspawners: true
 
-#Blokuje dany swiat
+#Blocks a given world
 blockworld:
-  #Do swiata world_nether
+  #To the world world_nether
   nether:
-    #Wiadomosc kiedy odpali sie
-    wiadomosc-data: 18-04-2021 18:00
-    #Czy ta opcja dziala
+    #Message when it starts
+    message-date: 18-04-2021 18:00
+    #Does this option work?
     blocked: true
-  #Do swiata world_the_end
+  #To the world world_the_end
   end:
-    #Wiadomosc kiedy odpali sie
-    wiadomosc-data: 19-04-2021 18:00
-    #Czy ta opcja dziala
+    #Message when it starts
+    message-date: 19-04-2021 18:00
+    #Does this option work?
     blocked: true
 
-#Opcje END
+#Options END
 end:
-  #Nie dziala tnt w end
+  #Tnt in end doesn't work
   blocked-tnt: true
-  #Nie dostaje sie obrazen od entity
+  #No damage from entity
   blocked-damage-entity: true
-  #Nie da sie postawic luzka
+  #You can't lay it down
   blocked-bed: true
-  #Lvl smoka
+  #Dragon Lvl
   dragon-lvl:
-    #Jaki jest obecnie lvl
+    #What is the current lvl
     lvl: 1
-    #Czy dziala
-    dzialanie: true
-  #Czy z dragona wypala elytra
+    #Is it working
+    works: true
+  #Does the dragoon fire elytra?
   dragon-elytra: true
 
-#Oslabienie mendingu
+#Weakening Mending
 mending:
-  #Czy dziala
-  dziala: true
-  #Moc oslobienia (liczba 10 daje o 70% gorsze mending)
-  liczba: 10
+  #Is it working
+  works: true
+  #Weakening power (number 10 gives 70% worse mending)
+  count: 10
 
-#Lista wiadomosci ktore wysylaja sie automatycznie
+#List of messages that are sent automatically
 automessage:
-  #Tutaj ustawiasz czy wiadomosci maja byc wysylane
-  dziala: true
-  #Ustawiasz czas ktory odlicza wyslanie kolejnej wiadomosci (w sekundach)
-  czas: 5
-  #Wypisujesz liste wszystkich wiadomosci
-  wiadomosci:
+  #Here you set whether messages should be sent
+  works: true
+  #Set the countdown time for sending the next message (in seconds)
+  time: 5
+  #You write a list of all messages
+  tidings:
     - '&bWiadomosc pierwsza'
     - '&cWiadomosc druga'
     - '&aWiadomosc trzecia'
 
-#Lista komend zablokowanych za serwerze
+#List of commands blocked on the server
 commandblock:
   - plugins
   - bukkit:pl
@@ -136,14 +146,14 @@ commandblock:
   - bukkit:burn
   - bukkit:kill
 
-#Ustawienia domow
+#Home Settings
 home:
-  #Ile gracz ma darmowych domow (permicja dla vipow bxcore.user.home)
-  darmowych: 1
-  #Ile jest ogolnie dostepnych domow (ustaw na 0 jezeli chcesz wylaczyc domy)
-  wszystkich: 5
+  #How many free houses does the player have (vip permission bxcore.user.home)
+  free: 1
+  #How many houses are generally available (set to 0 if you want to exclude houses)
+  everyone: 5
 
-#Ustawienia antylogut
+#Antilogout settings
 antylogut:
-  #Ile ma trwac antylogut
-  czas: 30
+  #How long should the antilogut last?
+  time: 30

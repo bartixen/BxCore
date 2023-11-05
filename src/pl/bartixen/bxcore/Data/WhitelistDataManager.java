@@ -36,7 +36,7 @@ public class WhitelistDataManager {
                 path.mkdirs();
                 wlfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §ewhitelist.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file whitelist.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(wlfile);
@@ -50,7 +50,7 @@ public class WhitelistDataManager {
         try {
             data.save(wlfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §ewhitelist.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file whitelist.yml");
         }
     }
 

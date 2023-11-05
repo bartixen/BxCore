@@ -60,9 +60,9 @@ public class Msg implements CommandExecutor {
                     if (msgd.getData().getConfigurationSection(uuid + ".socialspy") !=null) {
                         players.sendMessage("§8[§9" + p.getName() + " §8-> §9" + cel.getName() + "§8] §a" + msg);
                     }
-                    if (plugin.getConfig().getBoolean("logs")) {
-                        plugin.getLogger().log(Level.INFO, "[" + p.getName() + " -> " + cel.getName() + "] " + msg);
-                    }
+                }
+                if (plugin.getConfig().getBoolean("logs")) {
+                    plugin.getLogger().log(Level.INFO, "[" + p.getName() + " -> " + cel.getName() + "] " + msg);
                 }
                 p.sendMessage("§8[§2Ja §8-> §9" + cel.getName() + "§8] §a" + msg);
                 cel.sendMessage("§8[§9" + p.getName() + " §8-> §2Ja§8] §a" + msg);

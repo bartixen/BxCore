@@ -49,13 +49,13 @@ public class HomeCommand implements CommandExecutor {
         inventory.setItem(13, slotbez.build());
         inventory.setItem(14, slotbez.build());
         inventory.setItem(15, slotbez.build());
-        int ilehome = plugin.getConfig().getInt("home.wszystkich");
-        int iledarmowych = plugin.getConfig().getInt("home.darmowych");
-        if (ilehome >= 1) {
-            if (iledarmowych >= 1) {
+        int everyone = plugin.getConfig().getInt("home.everyone");
+        int free = plugin.getConfig().getInt("home.free");
+        if (everyone >= 1) {
+            if (free >= 1) {
                 if(hd.getData().getConfigurationSection(uuid + ".homes.home1") !=null) {
-                    String nazwa = hd.getData().getString(uuid + ".homes.home1" + ".name");
-                    ItemBuilder slot11 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #1").addLore("§7§lNazwa: §f§l" + nazwa);
+                    String name = hd.getData().getString(uuid + ".homes.home1" + ".name");
+                    ItemBuilder slot11 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #1").addLore("§7§lNazwa: §f§l" + name);
                     inventory.setItem(11, slot11.build());
                 } else {
                     ItemBuilder slot11 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -64,8 +64,8 @@ public class HomeCommand implements CommandExecutor {
             } else {
                 if (p.hasPermission("bxcore.user.home") || p.isOp()) {
                     if(hd.getData().getConfigurationSection(uuid + ".homes.home1") !=null) {
-                        String nazwa = hd.getData().getString(uuid + ".homes.home1" + ".name");
-                        ItemBuilder slot11 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #1").addLore("§7§lNazwa: §f§l" + nazwa);
+                        String name = hd.getData().getString(uuid + ".homes.home1" + ".name");
+                        ItemBuilder slot11 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #1").addLore("§7§lNazwa: §f§l" + name);
                         inventory.setItem(11, slot11.build());
                     } else {
                         ItemBuilder slot11 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -74,11 +74,11 @@ public class HomeCommand implements CommandExecutor {
                 }
             }
         }
-        if (ilehome >= 2) {
-            if (iledarmowych >= 2) {
+        if (everyone >= 2) {
+            if (free >= 2) {
                 if(hd.getData().getConfigurationSection(uuid + ".homes.home2") !=null) {
-                    String nazwa = hd.getData().getString(uuid + ".homes.home2" + ".name");
-                    ItemBuilder slot12 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #2").addLore("§7§lNazwa: §f§l" + nazwa);
+                    String name = hd.getData().getString(uuid + ".homes.home2" + ".name");
+                    ItemBuilder slot12 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #2").addLore("§7§lNazwa: §f§l" + name);
                     inventory.setItem(12, slot12.build());
                 } else {
                     ItemBuilder slot12 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -87,8 +87,8 @@ public class HomeCommand implements CommandExecutor {
             } else {
                 if (p.hasPermission("bxcore.user.home") || p.isOp()) {
                     if(hd.getData().getConfigurationSection(uuid + ".homes.home2") !=null) {
-                        String nazwa = hd.getData().getString(uuid + ".homes.home2" + ".name");
-                        ItemBuilder slot12 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #2").addLore("§7§lNazwa: §f§l" + nazwa);
+                        String name = hd.getData().getString(uuid + ".homes.home2" + ".name");
+                        ItemBuilder slot12 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #2").addLore("§7§lNazwa: §f§l" + name);
                         inventory.setItem(12, slot12.build());
                     } else {
                         ItemBuilder slot12 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -97,11 +97,11 @@ public class HomeCommand implements CommandExecutor {
                 }
             }
         }
-        if (ilehome >= 3) {
-            if (iledarmowych >= 3) {
+        if (everyone >= 3) {
+            if (free >= 3) {
                 if(hd.getData().getConfigurationSection(uuid + ".homes.home3") !=null) {
-                    String nazwa = hd.getData().getString(uuid + ".homes.home3" + ".name");
-                    ItemBuilder slot13 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #3").addLore("§7§lNazwa: §f§l" + nazwa);
+                    String name = hd.getData().getString(uuid + ".homes.home3" + ".name");
+                    ItemBuilder slot13 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #3").addLore("§7§lNazwa: §f§l" + name);
                     inventory.setItem(13, slot13.build());
                 } else {
                     ItemBuilder slot13 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -110,8 +110,8 @@ public class HomeCommand implements CommandExecutor {
             } else {
                 if (p.hasPermission("bxcore.user.home") || p.isOp()) {
                     if(hd.getData().getConfigurationSection(uuid + ".homes.home3") !=null) {
-                        String nazwa = hd.getData().getString(uuid + ".homes.home3" + ".name");
-                        ItemBuilder slot13 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #1").addLore("§7§lNazwa: §f§l" + nazwa);
+                        String name = hd.getData().getString(uuid + ".homes.home3" + ".name");
+                        ItemBuilder slot13 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #1").addLore("§7§lNazwa: §f§l" + name);
                         inventory.setItem(13, slot13.build());
                     } else {
                         ItemBuilder slot13 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -120,11 +120,11 @@ public class HomeCommand implements CommandExecutor {
                 }
             }
         }
-        if (ilehome >= 4) {
-            if (iledarmowych >= 4) {
+        if (everyone >= 4) {
+            if (free >= 4) {
                 if(hd.getData().getConfigurationSection(uuid + ".homes.home4") !=null) {
-                    String nazwa = hd.getData().getString(uuid + ".homes.home4" + ".name");
-                    ItemBuilder slot14 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #4").addLore("§7§lNazwa: §f§l" + nazwa);
+                    String name = hd.getData().getString(uuid + ".homes.home4" + ".name");
+                    ItemBuilder slot14 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #4").addLore("§7§lNazwa: §f§l" + name);
                     inventory.setItem(14, slot14.build());
                 } else {
                     ItemBuilder slot14 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -133,8 +133,8 @@ public class HomeCommand implements CommandExecutor {
             } else {
                 if (p.hasPermission("bxcore.user.home") || p.isOp()) {
                     if(hd.getData().getConfigurationSection(uuid + ".homes.home4") !=null) {
-                        String nazwa = hd.getData().getString(uuid + ".homes.home4" + ".name");
-                        ItemBuilder slot14 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #4").addLore("§7§lNazwa: §f§l" + nazwa);
+                        String name = hd.getData().getString(uuid + ".homes.home4" + ".name");
+                        ItemBuilder slot14 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #4").addLore("§7§lNazwa: §f§l" + name);
                         inventory.setItem(14, slot14.build());
                     } else {
                         ItemBuilder slot14 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -143,11 +143,11 @@ public class HomeCommand implements CommandExecutor {
                 }
             }
         }
-        if (ilehome == 5) {
-            if (iledarmowych == 5) {
+        if (everyone == 5) {
+            if (free == 5) {
                 if(hd.getData().getConfigurationSection(uuid + ".homes.home5") !=null) {
-                    String nazwa = hd.getData().getString(uuid + ".homes.home5" + ".name");
-                    ItemBuilder slot15 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #5").addLore("§7§lNazwa: §f§l" + nazwa);
+                    String name = hd.getData().getString(uuid + ".homes.home5" + ".name");
+                    ItemBuilder slot15 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #5").addLore("§7§lNazwa: §f§l" + name);
                     inventory.setItem(15, slot15.build());
                 } else {
                     ItemBuilder slot14 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");
@@ -156,8 +156,8 @@ public class HomeCommand implements CommandExecutor {
             } else {
                 if (p.hasPermission("bxcore.user.home") || p.isOp()) {
                     if(hd.getData().getConfigurationSection(uuid + ".homes.home5") !=null) {
-                        String nazwa = hd.getData().getString(uuid + ".homes.home5" + ".name");
-                        ItemBuilder slot15 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #4").addLore("§7§lNazwa: §f§l" + nazwa);
+                        String name = hd.getData().getString(uuid + ".homes.home5" + ".name");
+                        ItemBuilder slot15 = (new ItemBuilder(Material.LIME_CONCRETE, 1)).setTitle("§a§lDom #4").addLore("§7§lNazwa: §f§l" + name);
                         inventory.setItem(15, slot15.build());
                     } else {
                         ItemBuilder slot15 = (new ItemBuilder(Material.YELLOW_CONCRETE, 1)).setTitle("§e§lUstaw dom").addLore("§7Kliknij aby ustawić domu w obecnej lokalizacji");

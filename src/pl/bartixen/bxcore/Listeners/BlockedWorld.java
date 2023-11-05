@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class BlockedWorld implements Listener {
 
-    HashMap<Player, Long> spam = new HashMap<Player, Long>();
+    HashMap<Player, Long> spam = new HashMap<>();
 
     Main plugin;
 
@@ -27,13 +27,13 @@ public class BlockedWorld implements Listener {
         if (e.getTo().getWorld().equals(plugin.getServer().getWorld("world_nether"))) {
             if (plugin.getConfig().getBoolean("blockworld.nether.blocked")) {
                 e.setCancelled(true);
-                String czas = plugin.getConfig().getString("blockworld.nether.wiadomosc-data");
-                p.sendTitle("§f§lNether jest zablokowany", "§f§lodblokuje sie: §9§l" + czas, 5, 50, 5);
+                String time = plugin.getConfig().getString("blockworld.nether.message-date");
+                p.sendTitle("§f§lNether jest zablokowany", "§f§lodblokuje sie: §9§l" + time, 5, 50, 5);
             }
         }
         if (e.getTo().getWorld().equals(plugin.getServer().getWorld("world_the_end"))) {
             if (plugin.getConfig().getBoolean("blockworld.end.blocked")) {
-                String czas = plugin.getConfig().getString("blockworld.end.wiadomosc-data");
+                String time = plugin.getConfig().getString("blockworld.end.message-date");
                 e.setCancelled(true);
                 if (spam.containsKey(p)) {
                     if (!(spam.get(p) > System.currentTimeMillis())) {
@@ -45,7 +45,7 @@ public class BlockedWorld implements Listener {
                         float pitch = plugin.getConfig().getInt("spawn.pitch");
                         String world = plugin.getConfig().getString("spawn.world");
                         p.teleport(new Location(p.getServer().getWorld(world), x, y, z, yaw, pitch));
-                        p.sendTitle("§f§lEnd jest zablokowany", "§f§lodblokuje sie: §9§l" + czas, 5, 50, 5);
+                        p.sendTitle("§f§lEnd jest zablokowany", "§f§lodblokuje sie: §9§l" + time, 5, 50, 5);
                     }
                 } else {
                     spam.put(p, System.currentTimeMillis() + 5 * 1000);
@@ -56,7 +56,7 @@ public class BlockedWorld implements Listener {
                     float pitch = plugin.getConfig().getInt("spawn.pitch");
                     String world = plugin.getConfig().getString("spawn.world");
                     p.teleport(new Location(p.getServer().getWorld(world), x, y, z, yaw, pitch));
-                    p.sendTitle("§f§lEnd jest zablokowany", "§f§lodblokuje sie: §9§l" + czas, 5, 50, 5);
+                    p.sendTitle("§f§lEnd jest zablokowany", "§f§lodblokuje sie: §9§l" + time, 5, 50, 5);
                 }
             }
         }

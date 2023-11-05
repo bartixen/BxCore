@@ -16,13 +16,13 @@ public class RtpNadajCommand implements CommandExecutor {
 
     static RtpDataManager rtpd;
 
-    public static ArrayList<String> przyciski = new ArrayList<>();
+    public static ArrayList<String> button = new ArrayList<>();
 
     public RtpNadajCommand(Main m) {
         plugin = m;
         m.getCommand("rtpnadaj").setExecutor(this);
         rtpd = RtpDataManager.getInstance();
-        przyciski = new ArrayList<>(rtpd.getData().getStringList("przyciski"));
+        button = new ArrayList<>(rtpd.getData().getStringList("przyciski"));
     }
 
     @Override
@@ -32,9 +32,9 @@ public class RtpNadajCommand implements CommandExecutor {
                 String x = args[0];
                 String y = args[1];
                 String z = args[2];
-                if (!(przyciski.contains(x + y + z))) {
-                    przyciski.add(x + y + z + "");
-                    rtpd.getData().set("przyciski", przyciski);
+                if (!(button.contains(x + y + z))) {
+                    button.add(x + y + z + "");
+                    rtpd.getData().set("przyciski", button);
                     try {
                         rtpd.saveData();
                     } catch (IOException e) {

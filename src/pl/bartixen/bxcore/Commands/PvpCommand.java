@@ -60,19 +60,18 @@ public class PvpCommand implements CommandExecutor, Listener {
                 }
                 Player p = (Player) sender;
                 if (userd.getData().getBoolean(sender.getName() + ".pvp")) {
-//                    if (p.getInventory().contains(Material.DIAMOND, 8)) {
-//                        removeItems((Inventory) p.getInventory(), Material.DIAMOND, 8);
-//                        userd.getData().set(sender.getName() + ".pvp", false);
-//                        try {
-//                            userd.saveData();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        sender.sendMessage("§7Pomyślnie §cwylaczono §7PVP");
-//                    } else {
-//                        sender.sendMessage("§7Aby wylaczyc PVP należy mieć §98 diax");
-//                    }
-                    p.sendMessage("§7Masz już włączone PVP");
+                    if (p.getInventory().contains(Material.DIAMOND, 8)) {
+                        removeItems((Inventory) p.getInventory(), Material.DIAMOND, 16);
+                        userd.getData().set(sender.getName() + ".pvp", false);
+                        try {
+                            userd.saveData();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        sender.sendMessage("§7Pomyślnie §cwylaczono §7PVP");
+                    } else {
+                        sender.sendMessage("§7Aby wylaczyc PVP należy mieć §916 diax");
+                    }
                 } else {
                     userd.getData().set(sender.getName() + ".pvp", true);
                     try {

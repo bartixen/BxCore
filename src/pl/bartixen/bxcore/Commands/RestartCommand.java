@@ -23,7 +23,7 @@ public class RestartCommand implements CommandExecutor {
         m.getCommand("wylaczenie").setExecutor(this);
     }
 
-    public void anulurrestart(BossBar bar) {
+    public void cancelRestart(BossBar bar) {
         bar.setTitle("§c§lRestart został anulowany");
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
             public void run() {
@@ -101,53 +101,53 @@ public class RestartCommand implements CommandExecutor {
                                                                                                                                         }
                                                                                                                                     }, 20);
                                                                                                                                 } else {
-                                                                                                                                    anulurrestart(bar);
+                                                                                                                                    cancelRestart(bar);
                                                                                                                                 }
                                                                                                                             }
                                                                                                                         }, 20);
 
                                                                                                                     } else {
-                                                                                                                        anulurrestart(bar);
+                                                                                                                        cancelRestart(bar);
                                                                                                                     }
                                                                                                                 }
                                                                                                             }, 20);
                                                                                                         } else {
-                                                                                                            anulurrestart(bar);
+                                                                                                            cancelRestart(bar);
                                                                                                         }
                                                                                                     }
                                                                                                 }, 20);
                                                                                             } else {
-                                                                                                anulurrestart(bar);
+                                                                                                cancelRestart(bar);
                                                                                             }
                                                                                         }
                                                                                     }, 20 * 2);
                                                                                 } else {
-                                                                                    anulurrestart(bar);
+                                                                                    cancelRestart(bar);
                                                                                 }
                                                                             }
                                                                         }, 20 * 5);
                                                                     } else {
-                                                                        anulurrestart(bar);
+                                                                        cancelRestart(bar);
                                                                     }
                                                                 }
                                                             }, 20 * 10);
                                                         } else {
-                                                            anulurrestart(bar);
+                                                            cancelRestart(bar);
                                                         }
                                                     }
                                                 }, 20 * 10);
                                             } else {
-                                                anulurrestart(bar);
+                                                cancelRestart(bar);
                                             }
                                         }
                                     }, 20 * 10);
                                 } else {
-                                    anulurrestart(bar);
+                                    cancelRestart(bar);
                                 }
                             }
                         }, 20 * 10);
                     } else {
-                        anulurrestart(bar);
+                        cancelRestart(bar);
                     }
                 }
             }, 20 * 10);

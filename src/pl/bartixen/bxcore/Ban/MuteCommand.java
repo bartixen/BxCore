@@ -40,7 +40,7 @@ public class MuteCommand implements CommandExecutor {
                     }
                     msg = sb.toString().replace("&", "§");
                     Player cel = Bukkit.getPlayerExact(args[0]);
-                    String nazwa = plugin.getConfig().getString("nazwa");
+                    String name = plugin.getConfig().getString("name");
                     if (!(args.length > 1)) {
                         msg = "brak";
                     }
@@ -82,7 +82,7 @@ public class MuteCommand implements CommandExecutor {
                     cel.sendMessage("§7Administrator: §9" + sender.getName());
                     cel.sendMessage("§7Wygasa: §9nigdy");
                     cel.sendMessage("");
-                    cel.sendMessage("§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •");
+                    cel.sendMessage("§8• — • — • — • §f§l" + name + " §8• — • — • — •");
                     cel.sendMessage("");
                     sender.sendMessage("§7Gracz §9" + cel.getName() + " §7został pomyślnie wyciszony");
                     for (Player players : Bukkit.getOnlinePlayers()) {

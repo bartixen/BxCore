@@ -36,7 +36,7 @@ public class StatyDataManager {
                 path.mkdirs();
                 statyfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §estaty.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file staty.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(statyfile);
@@ -50,7 +50,7 @@ public class StatyDataManager {
         try {
             data.save(statyfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §estaty.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file staty.yml");
         }
     }
 

@@ -1,204 +1,212 @@
 main: pl.bartixen.bxcore.Main
-version: 6.0.0
+version: 6.2.7
 author: Bartixen
 name: BxCore
-api-version: 1.18
+api-version: '1.20'
 website: https://bartixen.pl
 description: Core serwera
 depend: [BxAuth]
 
 commands:
   kit:
-    description: Pokazuje kity
+    description: Shows kit
   pvp:
-    description: Wlacza/Wylacza pvp dla gracza
+    description: Enables/Disables pvp for the player
   pomoc:
-    description: Wyswietla wszystkie dostepne komendy na danego gracza
+    description: Displays all available commands for a given player
   pl:
-    description: Pokazuje informacje o pluginie
+    description: Shows information about the plugin
+  logblock:
+    description: Enables/Disables logblock
   rtp:
-    description: Teleportuje gracza w losowe miejsce na mapie
+    description: Teleports the player to a random location on the map
   plugins:
-    description: Pokazuje informacje o pluginie
+    description: Shows information about the plugin
   ver:
-    description: Pokazuje informacje o pluginie
+    description: Shows information about the plugin
   lag:
-    description: Wyswietla istotne informacje o stanie serwera
+    description: Displays important information about the server status
   lagi:
-    description: Wyswietla istotne informacje o stanie serwera
+    description: Displays important information about the server status
   rtpnadaj:
-    description: Nadaje na dany blok możliwosc teleportowania graczy
+    description: Provides the ability to teleport players to a given block
   rtpusun:
-    description: Usuwa z danego bloku możliwosc teleportowania graczy
+    description: Removes the ability to teleport players from a given block
   tps:
-    description: Wyswietla istotne informacje o stanie serwera
+    description: Displays important information about the server status
   server:
-    description: Wyswietla istotne informacje o stanie serwera
+    description: Displays important information about the server status
   serverstats:
-    description: Wyswietla istotne informacje o stanie serwera
+    description: Displays important information about the server status
   serwer:
-    description: Wyswietla istotne informacje o stanie serwera
+    description: Displays important information about the server status
   version:
-    description: Pokazuje informacje o pluginie
+    description: Shows information about the plugin
   czat:
-    description: Komenda blokuje/odblokowauje/czyści czat serwera
+    description: The command blocks/unblocks/clears the server chat
   blockworld:
-    description: Komenda blokuje/odblokowuje dany swiat
+    description: The command blocks/unlocks a given world
   voucher:
-    description: Daje vouchery do ekwipunku gracza
+    description: Gives vouchers to the player's inventory
   wylaczenie:
-    description: W ciagu 60s wylacza serwer
+    description: Within 60 seconds it turns off the server
   chat:
-    description: Komenda blokuje/odblokowauje/czysci czat serwera
+    description: The command blocks/unblocks/clears the server chat
   cc:
-    description: Komenda czysci czat serwera
+    description: The command clears the server chat
   alert:
-    description: Wysyla dany alert do wszystkich graczy
+    description: Sends the given alert to all players
   list:
-    description: Pokazuje liste graczy i administratorow
+    description: Shows a list of players and administrators
   lista:
-    description: Pokazuje liste graczy i administratorow
+    description: Shows a list of players and administrators
   staty:
-    description: Pokazuje statystyki gracza
+    description: Shows player statistics
   statystyki:
-    description: Pokazuje statystyki gracza
+    description: Shows player statistics
   player:
-    description: Wyswietla wszystki istotne informacje o danym graczu
+    description: Displays all relevant information about a given player
   wl:
-    description: Zarzadza whitelista
+    description: Manages the whitelist
   bc:
-    description: Wysyla alert na wszystkich na czacie
+    description: Sends an alert to everyone in the chat
   broadcast:
-    description: Wysyla alert na wszystkich na czacie
+    description: Sends an alert to everyone in the chat
   gracz:
-    description: Wyswietla wszystki istotne informacje o danym graczu
+    description: Displays all relevant information about a given player
   ban:
-    description: Banuje gracza
+    description: Bans the player
   tempban:
-    description: Tymczasowo banuje gracza
+    description: Temporarily bans the player
   whitelist:
-    description: Zarzadza whitelista
+    description: Manages the whitelist
   tempmute:
-    description: Tymczasowy wycisza gracza
+    description: Temporary mutes the player
   ip:
-    description: Pokazuje ip danego gracza
+    description: Shows the IP of a given player
   anvil:
-    description: Otwiera kowadło
+    description: He opens the anvil
   kowadlo:
-    description: Otwiera kowadło
+    description: He opens the anvil
   graczip:
-    description: Pokazuje ip danego gracza
+    description: Shows the IP of a given player
   banip:
-    description: Nadaje blacklist na gracza/ip
+    description: Blacklists a player/IP
   ipban:
-    description: Nadaje blacklist na gracza/ip
+    description: Blacklists a player/IP
   unban:
-    description: Odbanowuje gracza
+    description: Unbans the player
   kick:
-    description: Wyrzuca gracza z serwera
+    description: Kicks the player from the server
   mute:
-    description: Wycisza gracza
+    description: Mutes the player
   unmute:
-    description: Odcisza gracza
+    description: Mutates the player
   clear:
-    description: Usuwa przedmioty z ekwipunku
+    description: Removes items from your inventory
   top:
-    description: Pokazuje statystyki gracza
+    description: Shows player statistics
   topki:
-    description: Pokazuje statystyki gracza
+    description: Shows player statistics
   bx:
-    description: Pokazuje informacje o pluginie
+    description: Shows information about the plugin
   bxcore:
-    description: Pokazuje informacje o pluginie
+    description: Shows information about the plugin
   day:
-    description: Ustawia dzien na serwerze
+    description: Sets the day on the server
   enderchest:
-    description: Otwiera enderchest danego gracza
+    description: Opens the player's enderchest
   setspawn:
-    description: Ustawia spawn w miejscu gracza
+    description: Sets the spawn at the player's location
   v:
-    description: Wlacza/Wylacza vanish gracza
+    description: Enables/Disables player vanish
   vanish:
-    description: Wlacza/Wylacza vanish gracza
+    description: Enables/Disables player vanish
   ec:
-    description: Otwiera enderchest danego gracza
+    description: Opens the player's enderchest
   fly:
-    description: Wlacza latanie dla danego gracza
+    description: Enables flying for a given player
   socialspy:
-    description: Pokazuje prywatne wiadomosci graczy
+    description: Shows players' private messages
   msg:
-    description: Wysyla prywatna wiadomosc na danego gracza
+    description: Sends a private message to a given player
   r:
-    description: Odpowiada na ostatnia prywatna wiadomość
+    description: Replies to last private message
   ignore:
-    description: Wylacza/Wlacza prywatne wiadomosci od danego gracza
+    description: Disables/Enables private messages from a given player
   dzien:
-    description: Ustawia dzień na serwerze
+    description: Sets the day on the server
   noc:
-    description: Ustawia noc na serwerze
+    description: Sets night on the server
   gm:
-    description: Ustawia dany tryb gry
+    description: Sets a given game mode
   gamemode:
-    description: Ustawia dany tryb gry
+    description: Sets a given game mode
   god:
-    description: Wlacza/Wylacza niesmiertelnosc gracza
+    description: Enables/Disables the player's immortality
   home:
-    description: Otwiera gui z domami
+    description: Opens the houses gui
   sethome:
-    description: Otwiera gui z domami
+    description: Opens the houses gui
   delhome:
-    description: Otwiera gui z domami
+    description: Opens the houses gui
   godmode:
-    description: Wlacza/Wylacza niesmiertelnosc gracza
+    description: Enables/Disables the player's immortality
   help:
-    description: Wyswietla wszystkie dostepne komendy na danego gracza
+    description: Displays all available commands for a given player
   heal:
-    description: Leczy gracza
+    description: Heals the player
   helpop:
-    description: Wysyla wiadomosc do administracji
+    description: Sends a message to the administration
   invsee:
-    description: Otwiera dany ekwipunek gracza
+    description: Opens the player's inventory
   swiat:
-    description: Teleportuje gracza na dany świat
+    description: Teleports the player to a given world
   oi:
-    description: Otwiera dany ekwipunek gracza
+    description: Opens the player's inventory
   pogoda:
-    description: Ustawia dana pogode na serwerze
+    description: Sets a given weather on the server
   night:
-    description: Ustawia noc na serwerze
+    description: Sets night on the server
   repair:
-    description: Naprawia przedmioty
+    description: Repairs items
   spawn:
-    description: Teleportuje na spawn
+    description: Teleports to spawn
   tp:
-    description: Teleportuje do danego gracza lub kordy
+    description: Teleports to a given player or cord
   teleport:
-    description: Teleportuje do danego gracza lub kordy
+    description: Teleports to a given player or cord
   tphere:
-    description: Teleportuje danego gracza do osoby ktora uzyla komendy
+    description: Teleports a given player to the person who used the command
   s:
-    description: Teleportuje danego gracza do osoby ktora uzyla komendy
+    description: Teleports a given player to the person who used the command
   tpa:
-    description: Wysyla prosbe o teleporacje do danego gracza
+    description: Sends a teleporation request to a given player
   tpaccept:
-    description: Akceptuje teleportacje od danego gracza
+    description: Accepts teleportations from a given player
   tpdeny:
-    description: Usuwa prosbe o teleportacje od danego gracza
+    description: Removes a teleport request from a given player
   weather:
-    description: Ustawia dana pogode na serwerze
+    description: Sets a given weather on the server
   back:
-    description: Teleportuje w ostanie zapisane miejsce danego gracza
+    description: Teleports to the last saved location of a given player
   world:
-    description: Teleportuje gracza na dany swiat
+    description: Teleports the player to a given world
   wb:
-    description: Otwiera crafting dla gracza
+    description: Opens crafting for the player
   speed:
-    description: Ustawia daną szybkosc chodzenie/latanie dla gracza
+    description: Sets a given walking/flying speed for the player
   crafting:
-    description: Otwiera crafting dla gracza
+    description: Opens crafting for the player
   permission:
-    description: Wyswietla komendy do permisji
+    description: Displays permission commands
   pex:
-    description: Wyswietla komendy do permisji
+    description: Displays permission commands
   perm:
-    description: Wyswietla komendy do permisji
+    description: Displays permission commands
+  nagrody:
+    description: Opens the rewards gui
+  nagroda:
+    description: Opens the rewards gui
+  reward:
+    description: Opens the rewards gui

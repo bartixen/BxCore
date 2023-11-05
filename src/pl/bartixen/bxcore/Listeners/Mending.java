@@ -18,8 +18,8 @@ public class Mending implements Listener {
 
     @EventHandler(priority= EventPriority.HIGHEST)
     public void mending(PlayerItemMendEvent e) {
-        if (plugin.getConfig().getBoolean("mending.dziala")) {
-            int liczba = plugin.getConfig().getInt("mending.liczba");
+        if (plugin.getConfig().getBoolean("mending.works")) {
+            int liczba = plugin.getConfig().getInt("mending.count");
             Random rand = new Random();
             int n = rand.nextInt(liczba);
             if (n >= 3) {

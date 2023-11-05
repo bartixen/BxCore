@@ -58,7 +58,7 @@ public class TempBanCommand implements CommandExecutor {
                     Date now = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
                     Player cel = Bukkit.getPlayerExact(args[0]);
-                    String nazwa = plugin.getConfig().getString("nazwa");
+                    String name1 = plugin.getConfig().getString("name");
                     if (cel == null) {
                         if (userd.getData().getString(args[0]) != null) {
                             String ip = userd.getData().getString(args[0] + ".last_ip");
@@ -112,7 +112,7 @@ public class TempBanCommand implements CommandExecutor {
                     if (plugin.getConfig().getBoolean("logs")) {
                         plugin.getLogger().log(Level.INFO, "Gracz " + cel.getName() + " zostal zbanowany tymczasowo przez " + sender.getName() + " z powodem " + msg);
                     }
-                    cel.kickPlayer("\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+                    cel.kickPlayer("\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + name1 + " §8• — • — • — •\n");
                 } else {
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7jest już zbanowany");
                 }

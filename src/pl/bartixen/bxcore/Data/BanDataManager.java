@@ -36,7 +36,7 @@ public class BanDataManager {
                 path.mkdirs();
                 banfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §eban.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file ban.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(banfile);
@@ -50,7 +50,7 @@ public class BanDataManager {
         try {
             data.save(banfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §eban.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file ban.yml");
         }
     }
 

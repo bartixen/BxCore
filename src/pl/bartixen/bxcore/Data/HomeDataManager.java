@@ -36,7 +36,7 @@ public class HomeDataManager {
                 path.mkdirs();
                 homefile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §ehome.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file home.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(homefile);
@@ -50,7 +50,7 @@ public class HomeDataManager {
         try {
             data.save(homefile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §ehome.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file home.yml");
         }
     }
 

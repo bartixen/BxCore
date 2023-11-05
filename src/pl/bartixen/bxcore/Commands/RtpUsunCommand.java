@@ -27,9 +27,9 @@ public class RtpUsunCommand implements CommandExecutor {
             String x = args[0];
             String y = args[1];
             String z = args[2];
-            if (RtpNadajCommand.przyciski.contains(x + y + z)) {
-                RtpNadajCommand.przyciski.remove(x + y + z);
-                rtpd.getData().set("przyciski", RtpNadajCommand.przyciski);
+            if (RtpNadajCommand.button.contains(x + y + z)) {
+                RtpNadajCommand.button.remove(x + y + z);
+                rtpd.getData().set("przyciski", RtpNadajCommand.button);
                 try {
                     rtpd.saveData();
                 } catch (IOException e) {

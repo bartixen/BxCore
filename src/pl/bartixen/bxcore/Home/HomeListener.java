@@ -75,18 +75,18 @@ public class HomeListener implements Listener {
         return notRemoved;
     }
 
-    public void teleport(Player p, int jakihome) throws IOException {
-        int ilehome = plugin.getConfig().getInt("home.wszystkich");
-        int iledarmowych = plugin.getConfig().getInt("home.darmowych");
+    public void teleport(Player p, int home) throws IOException {
+        int everyone = plugin.getConfig().getInt("home.everyone");
+        int free = plugin.getConfig().getInt("home.free");
         UUID uuid = p.getUniqueId();
-        if (ilehome >= jakihome) {
-            if (iledarmowych >= jakihome) {
-                if (hd.getData().getConfigurationSection(uuid + ".homes.home" + jakihome) != null) {
+        if (everyone >= home) {
+            if (free >= home) {
+                if (hd.getData().getConfigurationSection(uuid + ".homes.home" + home) != null) {
                     p.closeInventory();
-                    double X = hd.getData().getDouble(uuid + ".homes.home" + jakihome + ".x");
-                    double Y = hd.getData().getDouble(uuid + ".homes.home" + jakihome + ".y");
-                    double Z = hd.getData().getDouble(uuid + ".homes.home" + jakihome + ".z");
-                    String world = hd.getData().getString(uuid + ".homes.home" + jakihome + ".world");
+                    double X = hd.getData().getDouble(uuid + ".homes.home" + home + ".x");
+                    double Y = hd.getData().getDouble(uuid + ".homes.home" + home + ".y");
+                    double Z = hd.getData().getDouble(uuid + ".homes.home" + home + ".z");
+                    String world = hd.getData().getString(uuid + ".homes.home" + home + ".world");
                     if (!(p.hasPermission("bxcore.user.home") || p.isOp())) {
                         double tpX = p.getLocation().getX();
                         double tpY = p.getLocation().getY();
@@ -166,9 +166,9 @@ public class HomeListener implements Listener {
                                                                                                                 public void run() {
                                                                                                                     if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                         p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
-                                                                                                                        p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                                                                                                                        p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + home);
                                                                                                                         if (plugin.getConfig().getBoolean("logs")) {
-                                                                                                                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                                                                                                                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + home);
                                                                                                                         }
                                                                                                                     }
                                                                                                                 }
@@ -196,9 +196,9 @@ public class HomeListener implements Listener {
                         }, 20);
                     } else {
                         p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
-                        p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                        p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + home);
                         if (plugin.getConfig().getBoolean("logs")) {
-                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                            plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + home);
                         }
                     }
                 } else {
@@ -207,22 +207,22 @@ public class HomeListener implements Listener {
                     double Y = p.getLocation().getY();
                     double Z = p.getLocation().getZ();
                     String world = p.getLocation().getWorld().getName();
-                    hd.getData().set(uuid + ".homes.home" + jakihome + ".name", "Brak");
-                    hd.getData().set(uuid + ".homes.home" + jakihome + ".x", X);
-                    hd.getData().set(uuid + ".homes.home" + jakihome + ".y", Y);
-                    hd.getData().set(uuid + ".homes.home" + jakihome + ".z", Z);
-                    hd.getData().set(uuid + ".homes.home" + jakihome + ".world", world);
+                    hd.getData().set(uuid + ".homes.home" + home + ".name", "Brak");
+                    hd.getData().set(uuid + ".homes.home" + home + ".x", X);
+                    hd.getData().set(uuid + ".homes.home" + home + ".y", Y);
+                    hd.getData().set(uuid + ".homes.home" + home + ".z", Z);
+                    hd.getData().set(uuid + ".homes.home" + home + ".world", world);
                     hd.saveData();
-                    p.sendMessage("§7Pomyślnie ustawileś §9Dom #" + jakihome);
+                    p.sendMessage("§7Pomyślnie ustawileś §9Dom #" + home);
                 }
             } else {
                 if (p.hasPermission("bxcore.user.home") || p.isOp()) {
-                    if (hd.getData().getConfigurationSection(uuid + ".homes.home" + jakihome) != null) {
+                    if (hd.getData().getConfigurationSection(uuid + ".homes.home" + home) != null) {
                         p.closeInventory();
-                        double X = hd.getData().getDouble(uuid + ".homes.home" + jakihome + ".x");
-                        double Y = hd.getData().getDouble(uuid + ".homes.home" + jakihome + ".y");
-                        double Z = hd.getData().getDouble(uuid + ".homes.home" + jakihome + ".z");
-                        String world = hd.getData().getString(uuid + ".homes.home" + jakihome + ".world");
+                        double X = hd.getData().getDouble(uuid + ".homes.home" + home + ".x");
+                        double Y = hd.getData().getDouble(uuid + ".homes.home" + home + ".y");
+                        double Z = hd.getData().getDouble(uuid + ".homes.home" + home + ".z");
+                        String world = hd.getData().getString(uuid + ".homes.home" + home + ".world");
                         if (!(p.hasPermission("bxcore.user.home") || p.isOp())) {
                             double tpX = p.getLocation().getX();
                             double tpY = p.getLocation().getY();
@@ -303,9 +303,9 @@ public class HomeListener implements Listener {
                                                                                                                         if (tpX == tpX1 && tpY == tpY1 && tpZ == tpZ1) {
                                                                                                                             p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
                                                                                                                             if (plugin.getConfig().getBoolean("logs")) {
-                                                                                                                                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                                                                                                                                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + home);
                                                                                                                             }
-                                                                                                                            p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                                                                                                                            p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + home);
                                                                                                                         }
                                                                                                                     }
                                                                                                                 }, 20);
@@ -332,9 +332,9 @@ public class HomeListener implements Listener {
                             }, 20);
                         } else {
                             p.teleport(new Location(p.getServer().getWorld(world), X, Y, Z));
-                            p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + jakihome);
+                            p.sendMessage("§7Pomyślnie przeteleportowano ciebie do §9Dom #" + home);
                             if (plugin.getConfig().getBoolean("logs")) {
-                                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + jakihome);
+                                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " teleportowal sie do Dom #" + home);
                             }
                         }
                     } else {
@@ -343,48 +343,48 @@ public class HomeListener implements Listener {
                         double Y = p.getLocation().getY();
                         double Z = p.getLocation().getZ();
                         String world = p.getLocation().getWorld().getName();
-                        hd.getData().set(uuid + ".homes.home" + jakihome + ".name", "Brak");
-                        hd.getData().set(uuid + ".homes.home" + jakihome + ".x", X);
-                        hd.getData().set(uuid + ".homes.home" + jakihome + ".y", Y);
-                        hd.getData().set(uuid + ".homes.home" + jakihome + ".z", Z);
-                        hd.getData().set(uuid + ".homes.home" + jakihome + ".world", world);
+                        hd.getData().set(uuid + ".homes.home" + home + ".name", "Brak");
+                        hd.getData().set(uuid + ".homes.home" + home + ".x", X);
+                        hd.getData().set(uuid + ".homes.home" + home + ".y", Y);
+                        hd.getData().set(uuid + ".homes.home" + home + ".z", Z);
+                        hd.getData().set(uuid + ".homes.home" + home + ".world", world);
                         hd.saveData();
-                        p.sendMessage("§7Pomyślnie ustawileś §9Dom #" + jakihome);
+                        p.sendMessage("§7Pomyślnie ustawileś §9Dom #" + home);
                     }
                 }
             }
         }
     }
 
-    public void usuwaniehome(Player p, int jakihome) throws IOException {
+    public void delhome(Player p, int home) throws IOException {
         UUID uuid = p.getUniqueId();
-        if (hd.getData().getConfigurationSection(uuid + ".homes.home" + jakihome) != null) {
+        if (hd.getData().getConfigurationSection(uuid + ".homes.home" + home) != null) {
             p.closeInventory();
-            hd.getData().set(uuid + ".homes.home" + jakihome, null);
+            hd.getData().set(uuid + ".homes.home" + home, null);
             hd.saveData();
-            p.sendMessage("§7Twój dom §9Dom #" + jakihome + " §7zostal pomyślnie usuniety");
+            p.sendMessage("§7Twój dom §9Dom #" + home + " §7zostal pomyślnie usuniety");
             if (plugin.getConfig().getBoolean("logs")) {
-                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " usuna Dom #" + jakihome);
+                plugin.getLogger().log(Level.INFO, "Gracz " + p.getName() + " usuna Dom #" + home);
             }
         }
     }
 
-    public void ustawdome(Player p, int jakihome) throws IOException {
+    public void sethome(Player p, int home) throws IOException {
         UUID uuid = p.getUniqueId();
-        if (hd.getData().getConfigurationSection(uuid + ".homes.home" + jakihome) != null) {
+        if (hd.getData().getConfigurationSection(uuid + ".homes.home" + home) != null) {
             p.closeInventory();
             p.sendMessage("§7Napisz swoja nazwe domu na czacie, masz na to §930s");
-            hd.getData().set(uuid + ".homes.setname.home" + jakihome, "yes");
+            hd.getData().set(uuid + ".homes.setname.home" + home, "yes");
             hd.saveData();
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
-                    String home1 = hd.getData().getString(uuid + ".homes.setname.home" + jakihome);
+                    String home1 = hd.getData().getString(uuid + ".homes.setname.home" + home);
                     if (home1 == "yes") {
-                        hd.getData().set(uuid + ".homes.setname.home" + jakihome, null);
+                        hd.getData().set(uuid + ".homes.setname.home" + home, null);
                         try {
                             hd.saveData();
                         } catch (IOException ioException) {
-                            Bukkit.getServer().getLogger().log(Level.INFO, "§cNie udalo sie zapisac pliku §ehome.yml");
+                            Bukkit.getServer().getLogger().log(Level.INFO, "Failed to save the file home.yml");
                         }
                         p.sendMessage("§7Twój czas na napisanie nazwy minąl");
                     }
@@ -431,19 +431,19 @@ public class HomeListener implements Listener {
                 if (e.getRawSlot() < e.getInventory().getSize()) {
                     e.setCancelled(true);
                     if (e.getRawSlot() == 11) {
-                        usuwaniehome(p, 1);
+                        delhome(p, 1);
                     }
                     if (e.getRawSlot() == 12) {
-                        usuwaniehome(p, 2);
+                        delhome(p, 2);
                     }
                     if (e.getRawSlot() == 13) {
-                        usuwaniehome(p, 3);
+                        delhome(p, 3);
                     }
                     if (e.getRawSlot() == 14) {
-                        usuwaniehome(p, 4);
+                        delhome(p, 4);
                     }
                     if (e.getRawSlot() == 15) {
-                        usuwaniehome(p, 5);
+                        delhome(p, 5);
                     }
                     if (e.getRawSlot() == 26) {
                         p.closeInventory();
@@ -456,19 +456,19 @@ public class HomeListener implements Listener {
                     if (e.getRawSlot() < e.getInventory().getSize()) {
                         e.setCancelled(true);
                         if (e.getRawSlot() == 11) {
-                            ustawdome(p, 1);
+                            sethome(p, 1);
                         }
                         if (e.getRawSlot() == 12) {
-                            ustawdome(p, 2);
+                            sethome(p, 2);
                         }
                         if (e.getRawSlot() == 13) {
-                            ustawdome(p, 3);
+                            sethome(p, 3);
                         }
                         if (e.getRawSlot() == 14) {
-                            ustawdome(p, 4);
+                            sethome(p, 4);
                         }
                         if (e.getRawSlot() == 15) {
-                            ustawdome(p, 5);
+                            sethome(p, 5);
                         }
                         if (e.getRawSlot() == 26) {
                             p.closeInventory();

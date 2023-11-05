@@ -36,7 +36,7 @@ public class AntyLogutDataManager {
                 path.mkdirs();
                 antylogutfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §eantylogut.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file antylogut.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(antylogutfile);
@@ -50,7 +50,7 @@ public class AntyLogutDataManager {
         try {
             data.save(antylogutfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §eantylogut.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file antylogut.yml");
         }
     }
 

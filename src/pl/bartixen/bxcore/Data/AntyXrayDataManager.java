@@ -36,7 +36,7 @@ public class AntyXrayDataManager {
                 path.mkdirs();
                 banfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §exray.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file xray.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(banfile);
@@ -50,7 +50,7 @@ public class AntyXrayDataManager {
         try {
             data.save(banfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §exray.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file xray.yml");
         }
     }
 

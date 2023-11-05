@@ -34,7 +34,7 @@ public class Rtp implements Listener {
             int x1 = lokacja.getBlockX();
             int y1 = lokacja.getBlockY();
             int z1 = lokacja.getBlockZ();
-            if (RtpNadajCommand.przyciski.contains(x1 + "" + y1 + "" + z1)) {
+            if (RtpNadajCommand.button.contains(x1 + "" + y1 + "" + z1)) {
                 World w = p.getServer().getWorld("world");
                 int border = (int) p.getLocation().getWorld().getWorldBorder().getSize() / 2;
 

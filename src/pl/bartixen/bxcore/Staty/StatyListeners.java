@@ -2,6 +2,9 @@ package pl.bartixen.bxcore.Staty;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -14,10 +17,14 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import pl.bartixen.bxcore.Data.StatyDataManager;
 import pl.bartixen.bxcore.Main;
+import pl.bartixen.bxcore.Reward.RewardCommand;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class StatyListeners implements Listener {
@@ -40,16 +47,62 @@ public class StatyListeners implements Listener {
             statyd.getData().set(uuid + ".nick", nick);
             statyd.saveData();
         }
+
+        if (statyd.getData().getConfigurationSection("list") == null) {
+            statyd.getData().createSection("list");
+            statyd.saveData();
+        }
+
+        String uuidString = p.getUniqueId().toString();
+        FileConfiguration config = statyd.getData();
+
+        if (config.contains("list")) {
+            List<String> lista = config.getStringList("list.uuid");
+            if (!lista.contains(uuidString)) {
+                lista.add(uuidString);
+                config.set("list.uuid", lista);
+                statyd.saveData();
+            }
+        }
+
     }
 
     @EventHandler
     public void onOpenMenu(InventoryClickEvent e) throws IOException {
         Player p = (Player) e.getWhoClicked();
-        String nick = p.getDisplayName();
-        if (e.getView().getTitle().equals("§9§lStatystyki gracza §9§l§o" + nick)) {
+        if (e.getView().getTitle().startsWith("§9§lStatystyki gracza")) {
             if (e.getRawSlot() == -999) p.closeInventory();
             if (e.getRawSlot() < e.getInventory().getSize()) {
                 e.setCancelled(true);
+                if (e.getRawSlot() == 28) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+                if (e.getRawSlot() == 29) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+                if (e.getRawSlot() == 30) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+                if (e.getRawSlot() == 31) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+                if (e.getRawSlot() == 32) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+                if (e.getRawSlot() == 33) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+                if (e.getRawSlot() == 34) {
+                    p.closeInventory();
+                    RewardCommand.reward(String.valueOf(p.getUniqueId()), p);
+                }
+
             }
         }
     }
@@ -71,9 +124,24 @@ public class StatyListeners implements Listener {
         statyd.getData().set(uuid + ".breaks", statyd.getData().getInt(uuid + ".breaks") +1 );
         statyd.saveData();
 
-        if (e.getBlock().getType().equals(Material.DIAMOND_ORE)) {
-            statyd.getData().set(uuid + ".diamonds", statyd.getData().getInt(uuid + ".diamonds") +1 );
-            statyd.saveData();
+        ItemStack item = p.getInventory().getItemInMainHand();
+
+        List<Material> pickaxes = Arrays.asList(
+                Material.WOODEN_PICKAXE,
+                Material.STONE_PICKAXE,
+                Material.IRON_PICKAXE,
+                Material.GOLDEN_PICKAXE,
+                Material.DIAMOND_PICKAXE,
+                Material.NETHERITE_PICKAXE
+        );
+
+        if (e.getBlock().getType().equals(Material.DIAMOND_ORE) || e.getBlock().getType().equals(Material.DEEPSLATE_DIAMOND_ORE)) {
+            if (pickaxes.contains(item.getType())) {
+                if (!item.containsEnchantment(Enchantment.SILK_TOUCH)) {
+                    statyd.getData().set(uuid + ".diamonds", statyd.getData().getInt(uuid + ".diamonds") +1 );
+                    statyd.saveData();
+                }
+            }
         }
     }
 

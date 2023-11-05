@@ -26,10 +26,10 @@ public class WhitelistCommand implements CommandExecutor, Listener {
         m.getCommand("whitelist").setExecutor(this);
         m.getCommand("wl").setExecutor(this);
         wld = WhitelistDataManager.getInstance();
-        whitelist = new ArrayList<>(wld.getData().getStringList("lista"));
-        if ((wld.getData().getString("ustawienia")) == null) {
-            wld.getData().set("ustawienia.status", false);
-            wld.getData().set("ustawienia.wiadomosc", "Nie ma ciebie na whitelist");
+        whitelist = new ArrayList<>(wld.getData().getStringList("list"));
+        if ((wld.getData().getString("settings")) == null) {
+            wld.getData().set("settings.status", false);
+            wld.getData().set("settings.tidings", "Nie ma ciebie na whitelist");
             wld.saveData();
         }
     }
@@ -37,9 +37,9 @@ public class WhitelistCommand implements CommandExecutor, Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPreLogin(AsyncPlayerPreLoginEvent e) throws IOException {
         String wlaczona = "true";
-        if ((wld.getData().getString("ustawienia.status")) == wlaczona) {
+        if ((wld.getData().getString("settings.status")) == wlaczona) {
             if (!(whitelist.contains(e.getName()))) {
-                String message = wld.getData().getString("ustawienia.wiadomosc");
+                String message = wld.getData().getString("settings.tidings");
                 e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, message);
             }
         }
@@ -51,8 +51,8 @@ public class WhitelistCommand implements CommandExecutor, Listener {
             if (args.length > 0) {
                 if ((args[0].equalsIgnoreCase("on")) || (args[0].equalsIgnoreCase("wlacz"))) {
                     String wlaczona = "true";
-                    if ((wld.getData().getString("ustawienia.status")) != wlaczona) {
-                        wld.getData().set("ustawienia.status", true);
+                    if ((wld.getData().getString("settings.status")) != wlaczona) {
+                        wld.getData().set("settings.status", true);
                         try {
                             wld.saveData();
                         } catch (IOException e) {
@@ -68,8 +68,8 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                 } else {
                     if ((args[0].equalsIgnoreCase("off")) || (args[0].equalsIgnoreCase("wylacz"))) {
                         String wylaczona = "false";
-                        if ((wld.getData().getString("ustawienia.status")) != wylaczona) {
-                            wld.getData().set("ustawienia.status", false);
+                        if ((wld.getData().getString("settings.status")) != wylaczona) {
+                            wld.getData().set("settings.status", false);
                             try {
                                 wld.saveData();
                             } catch (IOException e) {
@@ -87,7 +87,7 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                             if (args.length == 2) {
                                 if (!(whitelist.contains(args[1]))) {
                                     whitelist.add(args[1]);
-                                    wld.getData().set("lista", whitelist);
+                                    wld.getData().set("list", whitelist);
                                     try {
                                         wld.saveData();
                                     } catch (IOException e) {
@@ -108,7 +108,7 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                 if (args.length == 2) {
                                     if (whitelist.contains(args[1])) {
                                         whitelist.remove(args[1]);
-                                        wld.getData().set("lista", whitelist);
+                                        wld.getData().set("list", whitelist);
                                         try {
                                             wld.saveData();
                                         } catch (IOException e) {
@@ -126,7 +126,7 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                 }
                             } else {
                                 if ((args[0].equalsIgnoreCase("reset")) || (args[0].equalsIgnoreCase("wyczyszcz"))) {
-                                    wld.getData().set("lista", null);
+                                    wld.getData().set("list", null);
                                     try {
                                         wld.saveData();
                                     } catch (IOException e) {
@@ -143,7 +143,7 @@ public class WhitelistCommand implements CommandExecutor, Listener {
                                             sb.append(args[i]).append(" ");
                                         }
                                         String msg = sb.toString().replace("&", "§");
-                                        wld.getData().set("ustawienia.wiadomosc", msg);
+                                        wld.getData().set("settings.tidings", msg);
                                         try {
                                             wld.saveData();
                                         } catch (IOException e) {

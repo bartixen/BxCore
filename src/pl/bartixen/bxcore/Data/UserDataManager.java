@@ -36,7 +36,7 @@ public class UserDataManager {
                 path.mkdirs();
                 userfile.createNewFile();
             } catch (IOException e) {
-                Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie utworzyc pliku §euser.yml");
+                Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to create file user.yml");
             }
         }
         data = YamlConfiguration.loadConfiguration(userfile);
@@ -50,7 +50,7 @@ public class UserDataManager {
         try {
             data.save(userfile);
         } catch (IIOException e) {
-            Bukkit.getServer().getLogger().log(Level.WARNING, "§cNie udalo sie zapisac pliku §euser.yml");
+            Bukkit.getServer().getLogger().log(Level.WARNING, "Failed to save the file user.yml");
         }
     }
 

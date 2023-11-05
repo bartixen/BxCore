@@ -16,11 +16,11 @@ public class Motd implements Listener {
 
     @EventHandler
     public void Motd(ServerListPingEvent e) {
-        String original1 = plugin.getConfig().getString("motd.linia-1");
-        String original2 = plugin.getConfig().getString("motd.linia-2");
-        String dodacjeden = plugin.getConfig().getString("motd.max-dodac-jeden");
+        String original1 = plugin.getConfig().getString("motd.line-1");
+        String original2 = plugin.getConfig().getString("motd.line-2");
+        String dodacjeden = plugin.getConfig().getString("motd.max-add-one");
         int max = plugin.getConfig().getInt("motd.max");
-        int liczbagraczy = Bukkit.getServer().getOnlinePlayers().size();
+        int playercount = Bukkit.getServer().getOnlinePlayers().size();
 
         String motd1 = original1.replace("&", "§");
         String motd2 = original2.replace("&", "§");
@@ -29,7 +29,7 @@ public class Motd implements Listener {
         e.setMaxPlayers(max);
 
         if (dodacjeden == "true") {
-            e.setMaxPlayers(liczbagraczy + 1);
+            e.setMaxPlayers(playercount + 1);
         }
 
     }

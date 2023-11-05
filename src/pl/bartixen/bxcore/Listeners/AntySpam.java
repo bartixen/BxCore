@@ -24,18 +24,18 @@ public class AntySpam implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
-        int czas = plugin.getConfig().getInt("antyspam.czas");
-        if (plugin.getConfig().getBoolean("antyspam.dzialanie", true)) {
+        int time = plugin.getConfig().getInt("antyspam.time");
+        if (plugin.getConfig().getBoolean("antyspam.works", true)) {
             if (!(p.hasPermission("bxcore.user.bypass") || p.isOp())) {
                 if (spam.containsKey(p)) {
                     if (spam.get(p) > System.currentTimeMillis()) {
                         p.sendMessage("§cPoczekaj przed ponownym wyslaniem wiadomości");
                         e.setCancelled(true);
                     } else {
-                        spam.put(p, System.currentTimeMillis() + czas * 1000);
+                        spam.put(p, System.currentTimeMillis() + time * 1000);
                     }
                 } else {
-                    spam.put(p, System.currentTimeMillis() + czas * 1000);
+                    spam.put(p, System.currentTimeMillis() + time * 1000);
                 }
             }
         }

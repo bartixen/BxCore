@@ -45,7 +45,7 @@ public class BanCommand implements CommandExecutor {
                 msg = sb.toString().replace("&", "§");
                 if (((band.getData().getString(args[0] + ".permban")) == null) && ((band.getData().getString(args[0] + ".tempban")) == null) && ((band.getData().getString(args[0] + ".banip")) == null)) {
                     if (!(args.length > 1)) { msg = "brak"; }
-                    String nazwa = plugin.getConfig().getString("nazwa");
+                    String name = plugin.getConfig().getString("name");
                     Player cel = Bukkit.getPlayerExact(args[0]);
                     if (cel == null) {
                         if (userd.getData().getString(args[0]) != null) {
@@ -97,7 +97,7 @@ public class BanCommand implements CommandExecutor {
                     if (plugin.getConfig().getBoolean("logs")) {
                         plugin.getLogger().log(Level.INFO, "Gracz " + cel.getName() + " zostal zbanowany permamentnie przez " + sender.getName() + " z powodem " + msg);
                     }
-                    cel.kickPlayer("\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + nazwa + " §8• — • — • — •\n");
+                    cel.kickPlayer("\n§8• — • — • — • §9§lBAN §8• — • — • — •\n\n§7Nick: §9" + cel.getDisplayName() + "\n§7Powód: §9" + msg + "\n§7Administrator: §9" + sender.getName() + "\n\n§8• — • — • — • §f§l" + name + " §8• — • — • — •\n");
                 } else {
                     sender.sendMessage("§7Gracz §9" + args[0] + " §7jest już zbanowany");
                 }

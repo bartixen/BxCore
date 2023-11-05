@@ -20,7 +20,7 @@ public class PluginsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        String nazwa = plugin.serwer;
+        String nazwa = plugin.server;
 
         sender.sendMessage("§7");
         sender.sendMessage("§7Server §e" + nazwa + " §7powered by §eBARTIXEN");

@@ -19,17 +19,17 @@ public class AutoMessage extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (plugin.getConfig().getBoolean("automessage.dziala")) {
-            List<String> wiadomosci = plugin.getConfig().getStringList("automessage.wiadomosci");
+        if (plugin.getConfig().getBoolean("automessage.works")) {
+            List<String> tidings = plugin.getConfig().getStringList("automessage.tidings");
 
-            if (i < wiadomosci.size()) {
+            if (i < tidings.size()) {
                 for (Player players : Bukkit.getOnlinePlayers()) {
-                    players.sendMessage(wiadomosci.get(i).replace("&", "§"));
+                    players.sendMessage(tidings.get(i).replace("&", "§"));
                 }
                 i++;
             } else {
                 for (Player players : Bukkit.getOnlinePlayers()) {
-                    players.sendMessage(wiadomosci.get(0).replace("&", "§"));
+                    players.sendMessage(tidings.get(0).replace("&", "§"));
                 }
                 i = 1;
             }

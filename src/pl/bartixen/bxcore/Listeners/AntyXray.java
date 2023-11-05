@@ -27,17 +27,17 @@ public class AntyXray implements Listener {
     public void onBreak(BlockBreakEvent e) throws IOException {
         Player p = e.getPlayer();
         UUID uuid = p.getUniqueId();
-        if (e.getBlock().getType() == Material.DIAMOND_ORE && (plugin.getConfig().getString("antyxray") == "true")) {
+        if ((e.getBlock().getType() == Material.DIAMOND_ORE || e.getBlock().getType() == Material.DEEPSLATE_DIAMOND_ORE) && (plugin.getConfig().getString("antyxray") == "true")) {
             if ((antyd.getData().getString("diamond." + uuid)) == null) {
                 antyd.getData().set("diamond." + uuid, 0);
                 antyd.saveData();
             }
             antyd.getData().set("diamond." + uuid, antyd.getData().getInt("diamond." + uuid) + 1);
             antyd.saveData();
-            int ile = antyd.getData().getInt("diamond." + uuid);
+            int count = antyd.getData().getInt("diamond." + uuid);
             for (Player players : Bukkit.getOnlinePlayers()) {
                 if (players.hasPermission("bxcore.alert.antyxray") || players.isOp()) {
-                    players.sendMessage("§8[§cANTYXRAY§8] §eGracz §c" + p.getName() + " §ewykopal rude diamentu §7(w ciagu 1h wykopal §f" + ile + "§7)");
+                    players.sendMessage("§8[§cANTYXRAY§8] §eGracz §c" + p.getName() + " §ewykopal rude diamentu §7(w ciagu 1h wykopal §f" + count + "§7)");
                 }
             }
         }
@@ -48,10 +48,10 @@ public class AntyXray implements Listener {
             }
             antyd.getData().set("netherite." + uuid, antyd.getData().getInt("netherite." + uuid) + 1);
             antyd.saveData();
-            int ile = antyd.getData().getInt("netherite." + uuid);
+            int count = antyd.getData().getInt("netherite." + uuid);
             for (Player players : Bukkit.getOnlinePlayers()) {
                 if (players.hasPermission("bxcore.alert.antyxray") || players.isOp()) {
-                    players.sendMessage("§8[§cANTYXRAY§8] §eGracz §c" + p.getName() + " §ewykopal ancient debris §7(w ciagu 1h wykopal §f" + ile + "§7)");
+                    players.sendMessage("§8[§cANTYXRAY§8] §eGracz §c" + p.getName() + " §ewykopal ancient debris §7(w ciagu 1h wykopal §f" + count + "§7)");
                 }
             }
         }

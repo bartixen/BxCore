@@ -26,15 +26,10 @@ public class ServerStatsCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender.hasPermission("bxcore.commands.server") || sender.isOp()) {
             Runtime runtime = Runtime.getRuntime();
-            String nazwa = plugin.getConfig().getString("nazwa");
-            String wersja = plugin.getServer().getVersion();
+            String name = plugin.getConfig().getString("name");
+            String version = plugin.getServer().getVersion();
             int online = plugin.getServer().getOnlinePlayers().size();
             int maxonline = plugin.getServer().getMaxPlayers();
-            StringBuilder sb = new StringBuilder("%tps%");
-            //for (double tps : MinecraftServer.getServer().recentTps) {
-            //    sb.append(format(tps));
-            //    sb.append(", ");
-            //}
             int world = plugin.getServer().getWorlds().size();
             int chunks = plugin.getServer().getWorld("world").getLoadedChunks().length + plugin.getServer().getWorld("world_nether").getLoadedChunks().length + plugin.getServer().getWorld("world_the_end").getLoadedChunks().length;
             int entities = plugin.getServer().getWorld("world").getEntities().size() + plugin.getServer().getWorld("world_nether").getEntities().size() + plugin.getServer().getWorld("world_the_end").getEntities().size();
@@ -48,10 +43,10 @@ public class ServerStatsCommand implements CommandExecutor {
             sredniping = sredniping % online;
 
             sender.sendMessage("§8 • — • — • — • ");
-            sender.sendMessage("§7Nazwa serwera: §9" + nazwa);
-            sender.sendMessage("§7Silnik: §9" + wersja);
+            sender.sendMessage("§7Nazwa serwera: §9" + name);
+            sender.sendMessage("§7Silnik: §9" + version);
             sender.sendMessage("§7Gracze: §9" + online + "/" + maxonline);
-            sender.sendMessage("§7TPS: §9" + sb.substring( 0, sb.length() - 0)); //sb.length() - 2
+            sender.sendMessage("§7TPS: §9blad");
             sender.sendMessage("§7Liczba światów: §9" + world);
             sender.sendMessage("§7Liczba zaladowanych chunks: §9" + chunks);
             sender.sendMessage("§7Liczba entities: §9" + entities);
